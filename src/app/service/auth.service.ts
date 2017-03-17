@@ -9,7 +9,9 @@ export class AuthService extends Http {
 
   constructor(backend: XHRBackend, options: RequestOptions) {
     let token = sessionStorage.getItem('auth_token');
-    options.headers.set('Authorization', `JWT ${token}`);
+    if (token != "null") {
+      options.headers.set('Authorization', `JWT ${token}`);
+    }
     options.headers.set('Content-Type', 'application/json')
     super(backend, options);
   }
@@ -20,10 +22,14 @@ export class AuthService extends Http {
       if (!options) {
         options = { headers: new Headers() };
       }
-      options.headers.set('Authorization', `JWT ${token}`)
+      if (token != "null") {
+        options.headers.set('Authorization', `JWT ${token}`);
+      }
       options.headers.set('Content-Type', 'application/json')
     } else {
-      url.headers.set('Authorization', `JWT ${token}`)
+      if (token != "null") {
+        options.headers.set('Authorization', `JWT ${token}`);
+      }
       url.headers.set('Content-Type', 'application/json')
     }
     return super.request(url, options).catch(this.catchAuthError(this));
