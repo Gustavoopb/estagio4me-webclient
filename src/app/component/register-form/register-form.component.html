@@ -1,0 +1,30 @@
+<form [formGroup]="registerForm" (submit)="submitRegistration($event)">
+    <md-card align="center">
+        <md-card-content align="center">
+            <md-card-title-group>
+                <md-card-title>Join us!</md-card-title>
+            </md-card-title-group>
+            <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+                <input mdInput formControlName="firstName" name="firstName" [(ngModel)]="firstName" type="text" required placeholder="First Name">
+            </md-input-container>
+            <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+                <input mdInput formControlName="secondName" name="secondName" [(ngModel)]="secondName" type="text" required placeholder="Second Name">
+            </md-input-container>
+            <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+                <input mdInput formControlName="username" name="username" [(ngModel)]="username" type="text" required placeholder="Username" (keyup)="checkEmailUsername($event)">
+            </md-input-container>
+            <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+                <input mdInput formControlName="email" name="email" [(ngModel)]="email" type="email" required placeholder="Email" (keyup)="checkEmailUsername($event)" >
+            </md-input-container>
+            <br>
+            <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+                <input mdInput formControlName="password" name="password" [(ngModel)]="password" type="password" required placeholder="Password">
+            </md-input-container>
+        </md-card-content>
+        <md-card-actions align="center">
+            <button md-button color="primary" [disabled]="registerForm.invalid">Register</button>
+            <a [routerLink]="['','login']" md-button color="warn">Cancel</a>
+        </md-card-actions>
+
+    </md-card>
+</form>
