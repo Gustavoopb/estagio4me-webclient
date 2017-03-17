@@ -1,0 +1,21 @@
+<form [formGroup]="loginForm" (submit)="login($event)">
+    <md-card class="login-form-component" align="center">
+        <md-card-content align="center">
+            <md-card-title-group>
+                <md-card-title>Wellcome!</md-card-title>
+            </md-card-title-group>
+            <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+                <input mdInput formControlName="username" name="username" [(ngModel)]="username" type="username" required placeholder="Username">
+            </md-input-container>
+            <br>
+            <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+                <input mdInput formControlName="password" name="password" [(ngModel)]="password" type="password" required placeholder="Password">
+            </md-input-container>
+        </md-card-content>
+
+        <md-card-actions align="center">
+            <button md-button color="primary">Login</button>
+            <a [routerLink]="['','register']" md-button color="accent">Register</a>
+        </md-card-actions>
+    </md-card>
+</form>
