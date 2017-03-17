@@ -1,3 +1,22 @@
-<h1>
-  {{title}}
-</h1>
+<md-sidenav-container class="menu-sidenav-container">
+  <md-toolbar>
+    <button md-icon-button color="primary" (click)="sidenav.open()">
+      <md-icon>menu</md-icon>
+    </button>
+    <a [routerLink]="['']">
+      <span class="menu-title">
+        {{title}}
+      </span>
+    </a>
+    <span class="remaining-space"></span>
+    <a [routerLink]="['','login']" md-icon-button color="primary">
+      <md-icon>person</md-icon>
+    </a>
+  </md-toolbar>
+
+  <md-sidenav #sidenav class="menu-sidenav">
+    <a md-button [routerLink]="['']">Hello, it's me!</a>
+  </md-sidenav>
+
+  <router-outlet></router-outlet>
+</md-sidenav-container>

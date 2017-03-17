@@ -1,0 +1,29 @@
+md-toolbar {
+    background-color: #F0F0F0;
+    color: #3E9630;
+    opacity: 0.9;
+}
+
+.menu-sidenav-container {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+.menu-sidenav {
+    background-color: #F0F0F0;
+    width: 15em;
+}
+
+.menu-title{
+    padding-left: 1em;
+}
+
+a{
+    text-decoration: none;
+    color: #3E9630;
+}
+
+.remaining-space {
+  flex: 1 1 auto;
+}

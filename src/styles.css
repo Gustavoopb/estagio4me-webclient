@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+/*@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';*/
+/*@import '~https://fonts.googleapis.com/icon?family=Material+Icons';*/
+html, body {
+    margin: 0;
+    background-color: #3E9630;
+    height: 100%;
+    width: 100%;
+}
+
+.mat-sidenav-backdrop.mat-sidenav-shown{
+    background-color: #000000;
+    opacity: 0.15
+}
