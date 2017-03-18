@@ -1,22 +1,29 @@
 <md-sidenav-container class="menu-sidenav-container">
   <md-toolbar>
-    <button md-icon-button color="primary" (click)="sidenav.open()">
+    <button md-icon-button color="primary" (click)="sidenav.open()" *ngIf="loginService.loggedIn()">
       <md-icon>menu</md-icon>
     </button>
-    <a [routerLink]="['']">
-      <span class="menu-title">
-        {{title}}
-      </span>
+    <a md-button color="primary" [routerLink]="['']">
+      {{title}}
+
     </a>
     <span class="remaining-space"></span>
-    <a [routerLink]="['','login']" md-icon-button color="primary">
+    <a [routerLink]="['','login']" md-icon-button color="primary" *ngIf="!loginService.loggedIn()">
       <md-icon>person</md-icon>
     </a>
+    <button md-button color="primary" [mdMenuTriggerFor]="menu" *ngIf="loginService.loggedIn()"><md-icon>person</md-icon>{{user.firstName}}</button>
+    <md-menu #menu>
+      <button md-menu-item>Profile</button>
+      <button md-menu-item (click)="logout()">Logout</button>
+    </md-menu>
+
   </md-toolbar>
 
   <md-sidenav #sidenav class="menu-sidenav">
     <a md-button [routerLink]="['']">Hello, it's me!</a>
   </md-sidenav>
 
-  <router-outlet></router-outlet>
+  <div class="app-content">
+    <router-outlet></router-outlet>
+  </div>
 </md-sidenav-container>

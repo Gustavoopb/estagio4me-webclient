@@ -19,11 +19,11 @@ export class RegisterFormComponent implements OnInit {
 
   constructor(fb: FormBuilder, public registerService: RegisterService, public router: Router) {
     this.registerForm = fb.group({
-      firstName: ['', Validators.required],
-      secondName: ['', Validators.required],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-      email: ['', Validators.compose([Validators.required, Validators.pattern('/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/')])],
-      username: ['', Validators.required]
+      firstName: [Validators.required],
+      secondName: [Validators.required],
+      password: [Validators.compose([Validators.required, Validators.minLength(8)])],
+      email: [Validators.compose([Validators.required, Validators.pattern('/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/')])],
+      username: [Validators.required]
     })
   }
 
@@ -52,7 +52,10 @@ export class RegisterFormComponent implements OnInit {
       this.registerService.checkEmailUsername({ [source]: this[source] }).subscribe(
         res => {
           let reason = source + "Taken";
+          var t: boolean = this.registerForm.invalid
+          console.log(res.text(), t, this.registerForm)
           if (res.text() != "null") {
+            console.log(res.text())
             this.registerForm.setErrors({ [reason]: true })
           } else {
             this.registerForm.setErrors(null)

@@ -27,3 +27,12 @@ a{
 .remaining-space {
   flex: 1 1 auto;
 }
+
+.app-content{
+    margin: auto;
+    margin-top: 5rem;
+    width: 65%;
+    height: auto;
+    background-color: transparent;
+    
+}

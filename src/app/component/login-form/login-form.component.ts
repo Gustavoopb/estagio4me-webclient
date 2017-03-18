@@ -29,6 +29,8 @@ export class LoginFormComponent implements OnInit {
     this.loginService.login({ username: this.username, password: this.password }).subscribe(res => {
       var body = JSON.parse(res.text())
       sessionStorage.setItem('auth_token', body['token'])
+      sessionStorage.setItem('user', JSON.stringify(body['user']))
+      this.router.navigate(['', 'home'])
     }, error => {
       console.log(error)
     })

@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { Response } from '@angular/http'
+import { Observable } from 'rxjs'
+import { ExtendedHttp } from './extended-http.service'
 
-import { AuthService } from './auth.service';
 
 @Injectable()
 export class RegisterService {
-  url: string = 'http://localhost:3000/api/login';
-  constructor(public authService: AuthService) {
+  url: string = 'http://localhost:3000/api/login'
+  constructor(public extendedHttp: ExtendedHttp) {
     
   }
 
@@ -22,12 +22,11 @@ export class RegisterService {
       }
     }
 
-    return this.authService.post(this.url + "/singUp", newUser)
+    return this.extendedHttp.post(this.url + "/singUp", newUser)
   }
 
   public checkEmailUsername(condition: any): Observable<Response> {
-    console.log(this.authService)
-    return this.authService.post(this.url + "/checkEmailUsername", condition)
+    return this.extendedHttp.post(this.url + "/checkEmailUsername", condition)
   }
 
 }
