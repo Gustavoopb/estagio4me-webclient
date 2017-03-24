@@ -5,7 +5,6 @@
     </button>
     <a md-button color="primary" [routerLink]="['']">
       {{title}}
-
     </a>
     <span class="remaining-space"></span>
     <a [routerLink]="['','login']" md-icon-button color="primary" *ngIf="!loginService.loggedIn()">
