@@ -1,0 +1,6 @@
+estagio4me:
+  image: nginx
+  volumes:
+    - ~/git/estagio4me/estagio4me-webclient/dist:/usr/share/nginx/html
+  ports:
+    - "80:80"
