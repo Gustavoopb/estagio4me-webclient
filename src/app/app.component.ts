@@ -17,21 +17,21 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (this.loginService.loggedIn()) {
-      console.log(sessionStorage.getItem('user'))
-      this.user = JSON.parse(sessionStorage.getItem('user'))
-    }
+    this.checkUserSession()
   }
 
   ngOnChanges() {
-    if (this.loginService.loggedIn()) {
-      console.log(sessionStorage.getItem('user'))
-      this.user = JSON.parse(sessionStorage.getItem('user'))
-    }
+    this.checkUserSession()
   }
 
   logout() {
     this.loginService.logout()
     this.router.navigate(['', 'login'])
+  }
+
+  checkUserSession(){
+    if (this.loginService.loggedIn()) {
+      this.user = JSON.parse(sessionStorage.getItem('user'))
+    }
   }
 }

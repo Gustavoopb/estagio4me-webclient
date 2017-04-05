@@ -6,7 +6,7 @@ import { ExtendedHttp } from './extended-http.service'
 
 @Injectable()
 export class RegisterService {
-  url: string = 'http://localhost:3000/api/login'
+  url: string = 'https://estagio4me-server.herokuapp.com/api/login'
   constructor(public extendedHttp: ExtendedHttp) {
     
   }

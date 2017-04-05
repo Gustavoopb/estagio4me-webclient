@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { MdSnackBar } from '@angular/material'
+
 import { RegisterService } from '../../service/register.service';
 
 @Component({
@@ -17,7 +19,7 @@ export class RegisterFormComponent implements OnInit {
   @Input() username: String
   public registerForm: FormGroup
 
-  constructor(fb: FormBuilder, public registerService: RegisterService, public router: Router) {
+  constructor(fb: FormBuilder, public registerService: RegisterService, public router: Router, public snackBar: MdSnackBar) {
     this.registerForm = fb.group({
       firstName: ['', Validators.required],
       secondName: ['', Validators.required],
@@ -40,32 +42,38 @@ export class RegisterFormComponent implements OnInit {
       "username": this.username
     }).subscribe(res => {
       this.router.navigate(['', 'login'])
+      this.snackBar.open(res.json()['message'], "close", {
+        duration: 3000,
+      })
     },
-      erro => console.log(erro))
+      err => {
+        console.log(err)
+      }
+      )
   }
 
   public checkEmailUsername(event: any) {
-    let source = event.target.name
-    if (this[source]) {
-      let regex: RegExp = /[^\w\s@._-]/gi
-      this[source] = this[source].toLowerCase().replace(regex, '')
-      this.registerService.checkEmailUsername({ [source]: this[source] }).subscribe(
-        res => {
-          let reason = source + "Taken";
-          var t: boolean = this.registerForm.invalid
-          console.log(res.text(), t, this.registerForm.invalid)
-          if (res.text() != "null") {
-            console.log(res.text())
-            this.registerForm.setErrors({ [reason]: true })
-          } else {
-            this.registerForm.setErrors(null)
-          }
-        },
-        error => {
-          console.log(error)
-          this.registerForm.setErrors({ [error.message]: true })
-        }
-      )
-    }
+    // let source = event.target.name
+    // if (this[source]) {
+    //   let regex: RegExp = /[^\w\s@._-]/gi
+    //   this[source] = this[source].toLowerCase().replace(regex, '')
+    //   this.registerService.checkEmailUsername({ [source]: this[source] }).subscribe(
+    //     res => {
+    //       let reason = source + "Taken";
+    //       var t: boolean = this.registerForm.invalid
+    //       console.log(res.text(), t, this.registerForm.invalid)
+    //       if (res.text() != "null") {
+    //         console.log(res.text())
+    //         this.registerForm.setErrors({ [reason]: true })
+    //       } else {
+    //         this.registerForm.setErrors(null)
+    //       }
+    //     },
+    //     error => {
+    //       console.log(error)
+    //       this.registerForm.setErrors({ [error.message]: true })
+    //     }
+    //   )
+    // }
   }
 }

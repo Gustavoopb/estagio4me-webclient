@@ -10,7 +10,7 @@
     <a [routerLink]="['','login']" md-icon-button color="primary" *ngIf="!loginService.loggedIn()">
       <md-icon>person</md-icon>
     </a>
-    <button md-button color="primary" [mdMenuTriggerFor]="menu" *ngIf="loginService.loggedIn()"><md-icon>person</md-icon>{{user.firstName}}</button>
+    <button md-button color="primary" [mdMenuTriggerFor]="menu" *ngIf="loginService.loggedIn()">{{user.firstName}}</button>
     <md-menu #menu>
       <button md-menu-item>Profile</button>
       <button md-menu-item (click)="logout()">Logout</button>
@@ -19,7 +19,7 @@
   </md-toolbar>
 
   <md-sidenav #sidenav class="menu-sidenav">
-    <a md-button [routerLink]="['']">Hello, it's me!</a>
+    <a md-button [routerLink]="['', 'internship']">Internship Form!</a>
   </md-sidenav>
 
   <div class="app-content">
