@@ -16,15 +16,21 @@ import { CanActivateViaAuthGuardService } from './service/can-activate-via-auth-
 import { ExtendedHttp } from './service/extended-http.service'
 import { LoginService } from './service/login.service'
 import { RegisterService } from './service/register.service'
+import { InternshipFormComponent } from './component/internship-form/internship-form.component'
+import { InternshipService } from "./service/internship.service"
+import { SkillService } from "./service/skill.service"
+import { CurrencyMaskModule } from "ng2-currency-mask"
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
     HomeComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    InternshipFormComponent
   ],
   imports: [
+    CurrencyMaskModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -38,8 +44,11 @@ import { RegisterService } from './service/register.service'
       useFactory: ExtendedHttp.providers,
       deps: [XHRBackend, RequestOptions, Router]
     },
-    RegisterService,
+
+    InternshipService,
     LoginService,
+    RegisterService,
+    SkillService,
 
     CanActivateViaAuthGuardService
   ], bootstrap: [AppComponent]
