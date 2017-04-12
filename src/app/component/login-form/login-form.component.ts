@@ -1,6 +1,5 @@
-import { MdDialog } from '@angular/material/dialog';
-import { MdSnackBar } from '@angular/material/snack-bar';
-import { Component, OnInit, Input } from '@angular/core'
+import {MdSnackBar} from '@angular/material/snack-bar';
+import { Component, OnInit, Input} from '@angular/core'
 import { LoginService } from '../../service/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, Route } from '@angular/router';
@@ -19,7 +18,7 @@ export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup
   public route: Route
 
-  constructor(fb: FormBuilder, public loginService: LoginService, public router: Router, public snackBar: MdSnackBar, public dialog: MdDialog) {
+  constructor(fb: FormBuilder, public loginService: LoginService, public router: Router, public snackBar: MdSnackBar) {
     this.loginForm = fb.group({
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
       username: ['', Validators.required]
@@ -37,7 +36,7 @@ export class LoginFormComponent implements OnInit {
       this.snackBar.open(body['message'], "close", {
         duration: 3000,
       })
-      this.router.navigate(['/home'])
+      this.router.navigate(['', 'home'])
     }, error => {
       console.log(error)
     })

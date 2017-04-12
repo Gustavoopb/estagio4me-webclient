@@ -5,11 +5,11 @@ import { Observable } from "rxjs"
 import { AbstractService } from "./abstract/abstract.service"
 
 @Injectable()
-export class InternshipService extends AbstractService{
+export class InternshipService extends AbstractService {
 
   constructor(public extendedHttp: ExtendedHttp) {
     super('/api/internship')
-   }
+  }
 
   public insert(internship: any): Observable<Response> {
     return this.extendedHttp.post(this.getURL('/insert'), internship)
@@ -18,5 +18,4 @@ export class InternshipService extends AbstractService{
   public findAll(): Observable<Response> {
     return this.extendedHttp.get(this.getURL('/findAll'))
   }
-
 }
