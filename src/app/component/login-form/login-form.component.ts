@@ -1,8 +1,10 @@
-import {MdSnackBar} from '@angular/material/snack-bar';
-import { Component, OnInit, Input} from '@angular/core'
+import { MdDialog } from '@angular/material/dialog';
+import { MdSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit, Input } from '@angular/core'
 import { LoginService } from '../../service/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, Route } from '@angular/router';
+import { RegisterFormComponent } from "../register-form/register-form.component";
 
 @Component({
   selector: 'login-form',
@@ -15,8 +17,9 @@ export class LoginFormComponent implements OnInit {
   @Input() username: String
   @Input() password: String
   public loginForm: FormGroup
+  public route: Route
 
-  constructor(fb: FormBuilder, public loginService: LoginService, public router: Router, public snackBar: MdSnackBar) {
+  constructor(fb: FormBuilder, public loginService: LoginService, public router: Router, public snackBar: MdSnackBar, public dialog: MdDialog) {
     this.loginForm = fb.group({
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
       username: ['', Validators.required]
@@ -34,7 +37,7 @@ export class LoginFormComponent implements OnInit {
       this.snackBar.open(body['message'], "close", {
         duration: 3000,
       })
-      this.router.navigate(['', 'home'])
+      this.router.navigate(['/home'])
     }, error => {
       console.log(error)
     })

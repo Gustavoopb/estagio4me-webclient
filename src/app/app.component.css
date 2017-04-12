@@ -1,7 +1,8 @@
 md-toolbar {
     background-color: #F0F0F0;
-    color: #3E9630;
     opacity: 0.9;
+    color: #4caf50;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
 .menu-sidenav-container {
@@ -21,7 +22,8 @@ md-toolbar {
 
 a{
     text-decoration: none;
-    color: #3E9630;
+    color: #4caf50;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
 .remaining-space {

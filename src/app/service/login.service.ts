@@ -3,16 +3,17 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import { ExtendedHttp } from './extended-http.service';
+import { AbstractService } from "./abstract/abstract.service";
 
 @Injectable()
-export class LoginService {
-  url: string = 'https://estagio4me-server.herokuapp.com/api/login'
-  constructor(public extendedHttp: ExtendedHttp) {
+export class LoginService extends AbstractService {
 
+  constructor(public extendedHttp: ExtendedHttp) {
+    super('/api/login')
   }
 
   public login(user: any) {
-    return this.extendedHttp.post(this.url + "/login", user)
+    return this.extendedHttp.post(this.getURL("/login"), user)
   }
 
   public logout() {

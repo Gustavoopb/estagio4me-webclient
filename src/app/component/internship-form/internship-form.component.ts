@@ -23,6 +23,7 @@ export class InternshipFormComponent implements OnInit {
   @Input() isCompensationPrivate: Boolean = false
   requiredSkills = []
   preferedSkills = []
+  @Input() contact: String
   @Input() area: String
   @ViewChild(MdSlider) slider: MdSlider
   sub: Subscription
@@ -43,6 +44,7 @@ export class InternshipFormComponent implements OnInit {
       isCompensationPrivate: ['', Validators.required],
       requiredSkills: ['', Validators.required],
       preferedSkills: ['', Validators.required],
+      contact: ['', Validators.required],
       area: ['', Validators.required]
     })
   }
@@ -55,17 +57,12 @@ export class InternshipFormComponent implements OnInit {
       err => {
         console.log(err)
       })
-
-      this.slider.min = 500
-      this.slider.max = 1700
-      this.slider.step = 25
-      this.slider.thumbLabel = true
   }
 
   addSkill(event: MdOptionSelectEvent) {
     var has: boolean = false
-    this[this.inputSkillSelected].filter(ob=>{ 
-      if(ob.name == event.source.value.name) {
+    this[this.inputSkillSelected].filter(ob => {
+      if (ob.name == event.source.value.name) {
         has = true
         return
       }
@@ -100,16 +97,23 @@ export class InternshipFormComponent implements OnInit {
     return skill ? skill.name : skill
   }
 
-  showAuto(event: any) {
+  submitInternship(event: any) {
     event.preventDefault()
-  }
-
-
-  submitInternship(event: any){
-    event.preventDefault()
-  }
-
-  sliderChange(){
-    this.compensation = this.slider.value
+    var internship = {
+      companyName: this.companyName,
+      role: this.role,
+      compensation: this.compensation,
+      isCompanyPrivate: this.isCompanyPrivate,
+      isCompensationPrivate: this.isCompensationPrivate,
+      requiredSkills: this.requiredSkills,
+      preferedSkills: this.preferedSkills,
+      contact: this.contact,
+      area: this.area
+    }
+    this.internshipService.insert(internship).subscribe(res => {
+      this.router.navigate(['', 'internship'])
+    }, err => {
+      console.log(err)
+    })
   }
 }

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core'
 import { Response } from '@angular/http'
 import { Observable } from 'rxjs'
 import { ExtendedHttp } from './extended-http.service'
+import { AbstractService } from "./abstract/abstract.service";
 
 
 @Injectable()
-export class RegisterService {
-  url: string = 'https://estagio4me-server.herokuapp.com/api/login'
+export class RegisterService extends AbstractService {
+
   constructor(public extendedHttp: ExtendedHttp) {
-    
+    super('/api/login')
   }
 
   public regiterUser(user: any): Observable<Response> {
@@ -21,12 +22,12 @@ export class RegisterService {
         "username": user.username
       }
     }
-
-    return this.extendedHttp.post(this.url + "/singUp", newUser)
+    console.log(JSON.stringify(newUser))
+    return this.extendedHttp.post(this.getURL("/singUp"), newUser)
   }
 
   public checkEmailUsername(condition: any): Observable<Response> {
-    return this.extendedHttp.post(this.url + "/checkEmailUsername", condition)
+    return this.extendedHttp.post(this.getURL("/checkEmailUsername"), condition)
   }
 
 }
