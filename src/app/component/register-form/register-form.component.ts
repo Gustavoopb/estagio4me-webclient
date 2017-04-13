@@ -53,27 +53,27 @@ export class RegisterFormComponent implements OnInit {
   }
 
   public checkEmailUsername(event: any) {
-    // let source = event.target.name
-    // if (this[source]) {
-    //   let regex: RegExp = /[^\w\s@._-]/gi
-    //   this[source] = this[source].toLowerCase().replace(regex, '')
-    //   this.registerService.checkEmailUsername({ [source]: this[source] }).subscribe(
-    //     res => {
-    //       let reason = source + "Taken";
-    //       var t: boolean = this.registerForm.invalid
-    //       console.log(res.text(), t, this.registerForm.invalid)
-    //       if (res.text() != "null") {
-    //         console.log(res.text())
-    //         this.registerForm.setErrors({ [reason]: true })
-    //       } else {
-    //         this.registerForm.setErrors(null)
-    //       }
-    //     },
-    //     error => {
-    //       console.log(error)
-    //       this.registerForm.setErrors({ [error.message]: true })
-    //     }
-    //   )
-    // }
+    let source = event.target.name
+    if (this[source]) {
+      let regex: RegExp = /[^\w\s@._-]/gi
+      this[source] = this[source].toLowerCase().replace(regex, '')
+      this.registerService.checkEmailUsername({ [source]: this[source] }).subscribe(
+        res => {
+          let reason = source + "Taken";
+          var t: boolean = this.registerForm.invalid
+          console.log(res.text(), t, this.registerForm.invalid)
+          if (res.text() != "null") {
+            console.log(res.text())
+            this.registerForm.setErrors({ [reason]: true })
+          } else {
+            this.registerForm.setErrors(null)
+          }
+        },
+        error => {
+          console.log(error)
+          this.registerForm.setErrors({ [error.message]: true })
+        }
+      )
+    }
   }
 }

@@ -22,3 +22,15 @@ md-card{
     opacity: 0.9;
 
 }
+
+.mat-slider-track-fill{
+    background-color: #4caf50 !important;
+}
+
+.mat-slider-thumb {
+    background-color: #4caf50 !important;
+}
+
+.mat-slider-thumb-label {
+    background-color: #4caf50 !important;
+}

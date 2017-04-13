@@ -11,13 +11,12 @@ export class ExtendedHttp extends Http {
   public router: Router
 
   constructor(backend: XHRBackend, options: RequestOptions, router: Router) {
-    let token = sessionStorage.getItem('auth_token')
     super(backend, options)
     this.router = router
   }
 
   request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-    let token = localStorage.getItem('auth_token')
+    let token = sessionStorage.getItem('auth_token')
     if (typeof url === 'string') {
       if (!options) {
         options = { headers: new Headers() }

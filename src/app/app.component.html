@@ -3,14 +3,17 @@
     <button md-icon-button color="primary" (click)="sidenav.open()" *ngIf="loginService.loggedIn()">
       <md-icon>menu</md-icon>
     </button>
-    <a md-button color="primary" [routerLink]="['']">
-      {{title}}
-    </a>
     <span class="remaining-space"></span>
-    <a [routerLink]="['','login']" md-icon-button color="primary" *ngIf="!loginService.loggedIn()">
-      <md-icon>person</md-icon>
+    <h4>
+      <a [routerLink]="['']">
+        {{title}}
+      </a>
+    </h4>
+    <span class="remaining-space"></span>
+    <a [routerLink]="['','login']" md-mini-fab color="primary" *ngIf="!loginService.loggedIn()">
+      <md-icon>exit_to_app</md-icon>
     </a>
-    <button md-button color="primary" [mdMenuTriggerFor]="menu" *ngIf="loginService.loggedIn()">{{user.firstName}}</button>
+    <button md-raised-button color="primary" [mdMenuTriggerFor]="menu" *ngIf="loginService.loggedIn()">{{user.firstName}}</button>
     <md-menu #menu>
       <button md-menu-item>Profile</button>
       <button md-menu-item (click)="logout()">Logout</button>

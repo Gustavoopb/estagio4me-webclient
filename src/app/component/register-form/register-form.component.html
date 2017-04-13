@@ -11,10 +11,10 @@
                 <input mdInput formControlName="secondName" name="secondName" [(ngModel)]="secondName" type="text" required placeholder="Second Name">
             </md-input-container>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-                <input mdInput formControlName="username" name="username" [(ngModel)]="username" type="text" required placeholder="Username" (keyup)="checkEmailUsername($event)">
+                <input mdInput formControlName="username" name="username" [(ngModel)]="username" type="text" required placeholder="Username" (blur)="checkEmailUsername($event)">
             </md-input-container>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-                <input mdInput formControlName="email" name="email" [(ngModel)]="email" type="email" required placeholder="Email" (keyup)="checkEmailUsername($event)" >
+                <input mdInput formControlName="email" name="email" [(ngModel)]="email" type="email" required placeholder="Email" (blur)="checkEmailUsername($event)" >
             </md-input-container>
             <br>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">

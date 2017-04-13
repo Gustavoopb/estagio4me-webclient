@@ -17,12 +17,16 @@
       </md-input-container>
 
       <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+        <input mdInput formControlName="contact" name="email" [(ngModel)]="contact" type="email" required placeholder="Contact Email">
+      </md-input-container>
+
+      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
         <input mdInput formControlName="area" name="area" [(ngModel)]="area" type="text" required placeholder="Area">
       </md-input-container>
 
       <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-        <input mdInput formControlName="requiredSkills" name="requiredSkills" [mdAutocomplete]="autoSkills" type="text" required
-          placeholder="Required Skills" (focus)="changeComplete($event)">
+        <input mdInput formControlName="requiredSkills" name="requiredSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Required Skills"
+          (focus)="changeComplete($event)">
       </md-input-container>
 
       <span mdTooltip="Click to Remove!" *ngFor="let skill of requiredSkills">
@@ -32,8 +36,8 @@
       </span>
 
       <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-        <input mdInput formControlName="preferedSkills" name="preferedSkills" [mdAutocomplete]="autoSkills" type="text" required
-          placeholder="Prefered Skills" (focus)="changeComplete($event)">
+        <input mdInput formControlName="preferedSkills" name="preferedSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Prefered Skills"
+          (focus)="changeComplete($event)">
       </md-input-container>
 
       <span mdTooltip="Click to Remove!" *ngFor="let skill of preferedSkills">
@@ -43,16 +47,16 @@
       </span>
       <br/>
 
-      <div [style.width]="'90%'">
-        <label [style.color]="'gray'">Compensation</label><span class="remaining-space"></span>
-        <md-slider class="example-margin" [value]="compensation" [style.color]="'primary'" [style.width]="'70%'" (change)="sliderChange()">
+      <div [style.width]="'90%'" class="compensation">
+        <label>Compensation</label><span class="remaining-space"></span>
+        <md-slider class="example-margin" [(value)]="compensation" color="primary" [style.width]="'81%'" min="500" max="1800" step="25"
+          thumbLabel="true" [(ngModel)]="compensation" formControlName="compensation">
         </md-slider>
         <span class="remaining-space"></span>
         <md-checkbox mdTooltip="Is your Compensation private?" [mdTooltipPosition]="'above'" name="isCompensationPrivate" formControlName="isCompensationPrivate"
           [(ngModel)]="isCompensationPrivate" color="primary"></md-checkbox>
       </div>
       <br/>
-
 
       <md-autocomplete id="autoSkills" #autoSkills="mdAutocomplete" [displayWith]="displarParser">
         <md-option *ngFor="let skill of filteredSkills | async" [value]="skill" (onSelect)="addSkill($event)">
@@ -61,7 +65,7 @@
       </md-autocomplete>
     </md-card-content>
     <md-card-actions align="center">
-      <button md-button color="primary">Register</button>
+      <button md-button color="primary">Submit</button>
       <a [routerLink]="['','login']" md-button color="warn">Cancel</a>
     </md-card-actions>
   </md-card>
