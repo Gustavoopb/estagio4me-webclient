@@ -11,7 +11,7 @@
     </h4>
     <span class="remaining-space"></span>
     <a [routerLink]="['','login']" md-mini-fab color="primary" *ngIf="!loginService.loggedIn()">
-      <md-icon>exit_to_app</md-icon>
+      <i class="fa fa-sign-in"></i>
     </a>
     <button md-raised-button color="primary" [mdMenuTriggerFor]="menu" *ngIf="loginService.loggedIn()">{{user.firstName}}</button>
     <md-menu #menu>

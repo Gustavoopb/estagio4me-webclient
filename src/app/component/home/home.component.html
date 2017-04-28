@@ -3,17 +3,24 @@
         <md-card-title-group>
             <md-card-title>Wellcome!</md-card-title>
         </md-card-title-group>
-        <md-list align="left" >
-            <h3 md-subheader [style.align]="'left'">Newer</h3>
-            <div>
-                <md-list-item *ngFor="let internshi of internships">
-                    <md-icon md-list-avatar>work</md-icon>
-                    <h4 md-line>{{internshi.role}} at {{internshi.companyName}}</h4>
-                    <p md-line> {{internshi.compensation | currency:'BRL':true:'1.2-2'}} </p>
+        <md-list align="left" *ngIf="internships.length > 0">
+            <h3 md-subheader color="primary">Newer</h3>
+            <div *ngFor="let internship of internships">
+                <md-list-item>
+                    <md-icon md-list-avatar [color]="getInternshipColor(internship.isActive)">work</md-icon>
+                    <h4 md-line>{{internship.role}} at {{internship.companyName}}</h4>
+                    <p md-line> {{internship.compensation | currency:'BRL':true:'1.2-2'}} </p>
+                    <md-chip-list md-line>
+                        <md-chip [disabled]="'true'" *ngFor="let skill of internship.requiredSkills">{{skill.name}}</md-chip>
+                    </md-chip-list>
+                    <button md-mini-fab [color]="getInternshipColor(internship.isActive)" (click)="activeIntenrship(internship)" *ngIf="isAdminUser()">
+                        <md-icon>{{internship.isActive ? "check" : "clear"}}</md-icon>
+                    </button>
                 </md-list-item>
                 <md-divider></md-divider>
             </div>
         </md-list>
+        <p md-line *ngIf="!internships.length > 0">  Sorry, we will find a perfect internship for you as soon as we can. </p>
     </md-card-content>
 
     <md-card-actions align="center">

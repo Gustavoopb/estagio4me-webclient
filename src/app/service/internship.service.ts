@@ -18,4 +18,12 @@ export class InternshipService extends AbstractService{
   public findAll(): Observable<Response> {
     return this.extendedHttp.get(this.getURL('/findAll'))
   }
+
+  public findByFilter(filter: Object): Observable<Response> {
+    return this.extendedHttp.post(this.getURL('/findByFilter'), filter)
+  }
+
+  public update(body: Object){
+    return this.extendedHttp.post(this.getURL('/updateOne'), body)
+  }
 }

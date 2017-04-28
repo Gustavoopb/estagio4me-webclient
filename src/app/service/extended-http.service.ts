@@ -16,7 +16,7 @@ export class ExtendedHttp extends Http {
   }
 
   request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-    let token = sessionStorage.getItem('auth_token')
+    let token = localStorage.getItem('auth_token')
     if (typeof url === 'string') {
       if (!options) {
         options = { headers: new Headers() }

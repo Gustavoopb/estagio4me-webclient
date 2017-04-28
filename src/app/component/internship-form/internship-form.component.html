@@ -2,59 +2,61 @@
   <md-card align="center">
     <md-card-content align="center">
 
-      <md-card-title-group>
+      <md-card-title-group align="center">
         <md-card-title>Internship</md-card-title>
       </md-card-title-group>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'86%'">
-        <input mdInput formControlName="companyName" name="companyName" [(ngModel)]="companyName" type="text" required placeholder="Company Name">
+      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
+        <input [style.width]="'80%'" mdInput formControlName="companyName" name="companyName" [(ngModel)]="companyName" type="text"
+          required placeholder="Company Name">
+        <md-checkbox [style.float]="'right'" mdTooltip="Is your Company name private?" [mdTooltipPosition]="'above'" name="isCompanyPrivate"
+          formControlName="isCompanyPrivate" [(ngModel)]="isCompanyPrivate" color="primary"></md-checkbox>
       </md-input-container>
-      <md-checkbox mdTooltip="Is your Company name private?" [mdTooltipPosition]="'above'" name="isCompanyPrivate" formControlName="isCompanyPrivate"
-        [(ngModel)]="isCompanyPrivate" color="primary"></md-checkbox>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="role" name="role" [(ngModel)]="role" type="text" required placeholder="Role">
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="contact" name="email" [(ngModel)]="contact" type="email" required placeholder="Contact Email">
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="area" name="area" [(ngModel)]="area" type="text" required placeholder="Area">
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="requiredSkills" name="requiredSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Required Skills"
           (focus)="changeComplete($event)">
       </md-input-container>
 
-      <span mdTooltip="Click to Remove!" *ngFor="let skill of requiredSkills">
+      <div class="row" *ngIf="requiredSkills.length > 0">
+        <span mdTooltip="Click to Remove!" *ngFor="let skill of requiredSkills">
           <button md-raised-button (click)="removeSkill($event, skill, 'requiredSkills')" color="primary">
               {{skill.name}}
           </button>
-      </span>
-
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+        </span>
+      </div>
+      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="preferedSkills" name="preferedSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Prefered Skills"
           (focus)="changeComplete($event)">
       </md-input-container>
 
-      <span mdTooltip="Click to Remove!" *ngFor="let skill of preferedSkills">
+      <div class="row" *ngIf="preferedSkills.length > 0">
+        <span mdTooltip="Click to Remove!" *ngFor="let skill of preferedSkills">
           <button md-raised-button (click)="removeSkill($event, skill, 'preferedSkills')" color="primary">
               {{skill.name}}
           </button>
-      </span>
-      <br/>
+        </span>
+      </div>
 
-      <div [style.width]="'90%'" class="compensation">
-        <label>Compensation</label><span class="remaining-space"></span>
+      <div class="compensation row">
+        <label>Compensation</label>
         <md-slider class="example-margin" [(value)]="compensation" color="primary" [style.width]="'81%'" min="500" max="1800" step="25"
           thumbLabel="true" [(ngModel)]="compensation" formControlName="compensation">
         </md-slider>
-        <span class="remaining-space"></span>
-        <md-checkbox mdTooltip="Is your Compensation private?" [mdTooltipPosition]="'above'" name="isCompensationPrivate" formControlName="isCompensationPrivate"
-          [(ngModel)]="isCompensationPrivate" color="primary"></md-checkbox>
+        <md-checkbox class="intenship-checkbox" mdTooltip="Is your Compensation private?" [mdTooltipPosition]="'above'" name="isCompensationPrivate"
+          formControlName="isCompensationPrivate" [(ngModel)]="isCompensationPrivate" color="primary"></md-checkbox>
       </div>
       <br/>
 

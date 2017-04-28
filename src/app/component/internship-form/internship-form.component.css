@@ -1,9 +1,15 @@
 .compensation{
-    display: inline-block;
-    position: relative;
-    text-align: left;
-    line-height: normal;
     font-family: Roboto,"Helvetica Neue",sans-serif;
-    align-items: center;
     color: rgba(0, 0, 0, 0.38);
+}
+
+.row{
+    text-align: left;
+    display: inline-block;
+    width: 70%;
+}
+
+.intenship-checkbox{
+    float: right;
+    margin-top: 0.9em;
 }

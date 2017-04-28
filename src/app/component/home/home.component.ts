@@ -17,14 +17,30 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.internshipService.findAll().subscribe(res => {
+    var filter = this.isAdminUser() ? {} : { isActive: true }
+    this.internshipService.findByFilter(filter).subscribe(res => {
       if (res.json()) {
         this.internships = res.json()
+        console.log(res.json()[0])
       }
-      console.log(this.internships)
     }, err => {
       console.log(err)
     })
   }
 
+  isAdminUser() {
+    return this.loginService.isAdmin()
+  }
+
+  activeIntenrship(internship: Object) {
+    internship['isActive'] = !internship['isActive']
+    this.internshipService.update(internship).subscribe(res => {
+      console.log(res.json())
+    }, err => {
+      console.log(err)
+    })
+  }
+  getInternshipColor(isActive: boolean){
+    return isActive ? "primary" : "warn"
+  }
 }

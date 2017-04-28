@@ -11,6 +11,10 @@
     "lib": [
       "es2016",
       "dom"
+    ],
+    "types": [
+      "jquery",
+      "materialize-css"
     ]
   }
 }

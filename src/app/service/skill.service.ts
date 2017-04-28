@@ -14,4 +14,8 @@ export class SkillService extends AbstractService {
   public findAll(): Observable<Response> {
     return this.extendedHttp.get(this.getURL('/findAll'))
   }
+
+  public find(skill: Object): Observable<Response> {
+    return this.extendedHttp.post(this.getURL('/find'), skill)
+  }
 }

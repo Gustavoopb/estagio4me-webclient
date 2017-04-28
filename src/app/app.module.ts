@@ -20,6 +20,7 @@ import { InternshipFormComponent } from './component/internship-form/internship-
 import { InternshipService } from "./service/internship.service"
 import { SkillService } from "./service/skill.service"
 import { CurrencyMaskModule } from "ng2-currency-mask"
+import { CanActivateAdminComponentService } from "./service/can-activate-admin-component.service";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CurrencyMaskModule } from "ng2-currency-mask"
     RegisterService,
     SkillService,
 
+    CanActivateAdminComponentService,
     CanActivateViaAuthGuardService
   ], bootstrap: [AppComponent]
 })

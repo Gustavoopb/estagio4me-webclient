@@ -5,7 +5,7 @@
                 <md-card-title>Wellcome!</md-card-title>
             </md-card-title-group>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-                <input mdInput formControlName="username" name="username" [(ngModel)]="username" type="username" required placeholder="Username">
+                <input mdInput formControlName="username" name="username" [(ngModel)]="username" type="username" required placeholder="Username" (keyup)="formatUsername()">
             </md-input-container>
             <br>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">

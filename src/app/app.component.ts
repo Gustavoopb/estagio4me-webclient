@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router'
 import { LoginService } from './service/login.service';
 import { IUser } from './model/user.model';
@@ -8,20 +8,18 @@ import { IUser } from './model/user.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent implements OnInit {
   title = 'Estágio4me';
   user: IUser
 
   constructor(public router: Router, public loginService: LoginService) {
-
+    router.events.subscribe(() => {
+      this.checkUserLocal()
+    })
   }
 
   ngOnInit() {
-    this.checkUserSession()
-  }
-
-  ngOnChanges() {
-    this.checkUserSession()
+    this.checkUserLocal()
   }
 
   logout() {
@@ -29,9 +27,11 @@ export class AppComponent implements OnInit, OnChanges {
     this.router.navigate(['', 'login'])
   }
 
-  checkUserSession(){
+  checkUserLocal() {
     if (this.loginService.loggedIn()) {
-      this.user = JSON.parse(sessionStorage.getItem('user'))
+      this.user = JSON.parse(localStorage.getItem('user'))
+    } else {
+      this.user = null
     }
   }
 }

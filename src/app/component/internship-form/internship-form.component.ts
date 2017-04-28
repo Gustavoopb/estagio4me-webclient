@@ -52,7 +52,7 @@ export class InternshipFormComponent implements OnInit {
   ngOnInit() {
     this.skillService.findAll().subscribe(
       res => {
-        this.skills = JSON.parse(res.text())
+        this.skills = res.json()
       },
       err => {
         console.log(err)
@@ -90,7 +90,9 @@ export class InternshipFormComponent implements OnInit {
   }
 
   filterSkills(val: string) {
-    return val ? this.skills.filter((skill) => new RegExp(val, 'gi').test(skill['name'])) : this.skills;
+     var result =  val ? this.skills.filter((skill) => new RegExp(val, 'gi').test(skill['name'])) : this.skills;
+     return result.length > 15 ? result.slice(0, 5) : result
+
   }
 
   displarParser(skill: any) {

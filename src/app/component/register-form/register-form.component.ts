@@ -56,7 +56,7 @@ export class RegisterFormComponent implements OnInit {
     let source = event.target.name
     if (this[source]) {
       let regex: RegExp = /[^\w\s@._-]/gi
-      this[source] = this[source].toLowerCase().replace(regex, '')
+      this[source] = this[source].toLowerCase().replace(regex, '').replace(' ', '')
       this.registerService.checkEmailUsername({ [source]: this[source] }).subscribe(
         res => {
           let reason = source + "Taken";

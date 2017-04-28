@@ -12,7 +12,6 @@ import { RegisterFormComponent } from "../register-form/register-form.component"
   styleUrls: ['./login-form.component.css'],
 
 })
-
 export class LoginFormComponent implements OnInit {
   @Input() username: String
   @Input() password: String
@@ -32,8 +31,7 @@ export class LoginFormComponent implements OnInit {
     event.preventDefault()
     this.loginService.login({ username: this.username, password: this.password }).subscribe(res => {
       var body = res.json()
-      sessionStorage.setItem('auth_token', body['token'])
-      sessionStorage.setItem('user', JSON.stringify(body['user']))
+      this.loginService.storeLogin(body['user'], body['token'])
       this.snackBar.open(body['message'], "close", {
         duration: 3000,
       })
@@ -41,5 +39,10 @@ export class LoginFormComponent implements OnInit {
     }, error => {
       console.log(error)
     })
+  }
+
+  public formatUsername(){
+    let regex: RegExp = /[^\w\s@._-]/gi
+    this.username = this.username.toLowerCase().replace(regex, '').replace(' ', '')
   }
 }

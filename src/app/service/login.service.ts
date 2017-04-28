@@ -12,16 +12,25 @@ export class LoginService extends AbstractService {
     super('/api/login')
   }
 
+  public storeLogin(user: Object, authToken: string) {
+    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('auth_token', authToken)
+  }
+
   public login(user: any) {
     return this.extendedHttp.post(this.getURL("/login"), user)
   }
 
   public logout() {
-    sessionStorage.removeItem('auth_token')
-    sessionStorage.removeItem('user')
+    localStorage.removeItem('auth_token')
+    localStorage.removeItem('user')
   }
 
   public loggedIn() {
-    return sessionStorage.getItem('auth_token') != null
+    return localStorage.getItem('auth_token') != null
+  }
+
+  public isAdmin() {
+    return this.loggedIn() ? JSON.parse(localStorage.getItem('user')).isAdmin : false
   }
 }

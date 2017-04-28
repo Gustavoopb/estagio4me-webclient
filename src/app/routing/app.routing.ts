@@ -7,14 +7,15 @@ import { RegisterFormComponent } from '../component/register-form/register-form.
 
 import { CanActivateViaAuthGuardService } from '../service/can-activate-via-auth-guard.service';
 import { InternshipFormComponent } from "../component/internship-form/internship-form.component";
+import { CanActivateAdminComponentService } from "../service/can-activate-admin-component.service";
 
 
 
 export const routing: ModuleWithProviders = RouterModule.forRoot([
-    // { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent, canActivate:  [CanActivateViaAuthGuardService]},
-    { path: 'internship', component: InternshipFormComponent, canActivate:  [CanActivateViaAuthGuardService]},    
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent, canActivate: [CanActivateViaAuthGuardService] },
+    { path: 'internship', component: InternshipFormComponent, canActivate: [CanActivateViaAuthGuardService, CanActivateAdminComponentService] },
     { path: 'login', component: LoginFormComponent },
     { path: 'register', component: RegisterFormComponent },
-    { path: '**', redirectTo: 'login' }
+    { path: '**', redirectTo: '' }
 ]);
