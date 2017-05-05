@@ -1,0 +1,45 @@
+<md-card align="center">
+  <md-card-content align="center">
+    <md-card-title-group>
+      <md-card-title>{{internship.isCompanyPrivate ? "Empresa Confidencial" : internship.companyName}}</md-card-title>
+    </md-card-title-group>
+    <md-list align="left">
+      <span md-subheader>{{internship.role}} na área de: {{internship.area}}</span>
+      <md-list-item>
+        <div md-line [style.font-size]="'14px'">
+          <span>Descrição:</span>
+          <p>{{internship.description}}</p>
+        </div>
+        <div md-line>
+          <span>Obrigatórios:</span>
+          <p>
+            <md-chip-list>
+              <md-chip *ngFor="let skill of internship.requiredSkills">{{skill.name}}</md-chip>
+            </md-chip-list>
+          </p>
+        </div>
+        <div md-line>
+          <span>Desejáveis:</span>
+          <p>
+            <md-chip-list>
+              <md-chip *ngFor="let skill of internship.preferredSkills">{{skill.name}}</md-chip>
+            </md-chip-list>
+          </p>
+        </div>
+        <div md-line>
+          <span md-line *ngIf="internship.isCompensationPrivate">O valor da bolsa é privada. </span>
+          <span md-line *ngIf="!internship.isCompensationPrivate">Bolsa estágio de: {{internship.compensation | currency:'BRL':true:'1.2-2'}} </span>
+        </div>
+        <div md-line>
+          <span md-line>Contato: <a [style.text-decoration]="'none'" [style.color]="'black'" href="mailto:{{internship.contact}}">{{internship.contact}}</a> </span>
+        </div>
+        <div>
+          <internship-admin-buttons [internship]="internship"></internship-admin-buttons>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+  <md-card-actions align="center">
+    <a [routerLink]="['/home']" md-button color="accent">Voltar</a>
+  </md-card-actions>
+</md-card>

@@ -8,8 +8,8 @@ export class CanActivateViaAuthGuardService implements CanActivate {
 
   constructor(public loginService: LoginService) { }
 
-  canActivate() {
-    return this.loginService.loggedIn();
+  canActivate(): boolean {
+    return this.loginService.isLoggedIn();
   }
 
 }

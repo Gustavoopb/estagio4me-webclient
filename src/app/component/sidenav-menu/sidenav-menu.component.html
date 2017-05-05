@@ -1,0 +1,6 @@
+<div *ngFor="let menu of menus">
+  <div md-line [style.text-align]="'center'" *ngIf="menu.render">
+    <a md-button [style.width]="'100%'" class="btn-lg" [routerLink]="menu.routerLink" color="primary" (click)="sidenav.close()">{{menu.label}}</a>
+    <md-divider></md-divider>
+  </div>
+</div>

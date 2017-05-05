@@ -33,6 +33,7 @@ a{
 .app-content{
     margin: auto;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     width: 95%;
     height: auto;
     background-color: transparent;

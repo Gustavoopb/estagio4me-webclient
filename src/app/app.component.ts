@@ -1,25 +1,49 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { OnDestroy, Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router'
 import { LoginService } from './service/login.service';
-import { IUser } from './model/user.model';
+import { SidenavMenuComponent } from "./component/sidenav-menu/sidenav-menu.component";
+import { Subscription } from "rxjs/Subscription";
+import { UserModel } from "./model/user.model";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Estágio4me';
-  user: IUser
+  user: UserModel
+  subs: Subscription[] = []
 
   constructor(public router: Router, public loginService: LoginService) {
-    router.events.subscribe(() => {
-      this.checkUserLocal()
-    })
+    this.subs.push(
+      this.router.events.subscribe(() => {
+        if (this.loginService.isLoggedIn()) {
+          this.loginService.reAuth().subscribe(res => {
+            var user: UserModel = new UserModel(res.json().user)
+            if (user.id) {
+              this.loginService.storeLogin(user, res.json().token)
+            } else {
+              this.loginService.logout()
+            }
+          }, err => {
+            console.log("Guest User.")
+          })
+        }
+      })
+    )
+
+    this.subs.push(router.events.subscribe(() => { this.checkUserLocal() }))
   }
 
   ngOnInit() {
     this.checkUserLocal()
+  }
+
+  ngOnDestroy() {
+    this.subs.forEach((sub: Subscription) => {
+      sub.unsubscribe()
+    })
   }
 
   logout() {
@@ -28,8 +52,8 @@ export class AppComponent implements OnInit {
   }
 
   checkUserLocal() {
-    if (this.loginService.loggedIn()) {
-      this.user = JSON.parse(localStorage.getItem('user'))
+    if (this.loginService.isLoggedIn()) {
+      this.user = this.loginService.loggedUser()
     } else {
       this.user = null
     }

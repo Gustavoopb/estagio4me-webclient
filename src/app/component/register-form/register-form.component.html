@@ -2,28 +2,28 @@
     <md-card align="center">
         <md-card-content align="center">
             <md-card-title-group>
-                <md-card-title>Join us!</md-card-title>
+                <md-card-title>Junte-se a nós!</md-card-title>
             </md-card-title-group>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-                <input mdInput formControlName="firstName" name="firstName" [(ngModel)]="firstName" type="text" required placeholder="First Name">
+                <input mdInput formControlName="firstName" name="firstName" [(ngModel)]="user.firstName" type="text" required placeholder="Primeiro nome">
             </md-input-container>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-                <input mdInput formControlName="secondName" name="secondName" [(ngModel)]="secondName" type="text" required placeholder="Second Name">
+                <input mdInput formControlName="lastName" name="lastName" [(ngModel)]="user.lastName" type="text" required placeholder="Último nome">
             </md-input-container>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-                <input mdInput formControlName="username" name="username" [(ngModel)]="username" type="text" required placeholder="Username" (blur)="checkEmailUsername($event)">
+                <input mdInput formControlName="username" name="username" [(ngModel)]="user.username" type="text" required placeholder="Nome de usuário" (blur)="checkEmailUsername($event)">
             </md-input-container>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-                <input mdInput formControlName="email" name="email" [(ngModel)]="email" type="email" required placeholder="Email" (blur)="checkEmailUsername($event)" >
+                <input mdInput formControlName="email" name="email" [(ngModel)]="user.email" type="email" required placeholder="Email" (blur)="checkEmailUsername($event)" >
             </md-input-container>
             <br>
             <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
-                <input mdInput formControlName="password" name="password" [(ngModel)]="password" type="password" required placeholder="Password">
+                <input mdInput formControlName="password" name="password" [(ngModel)]="user.password" type="password" required placeholder="Senha">
             </md-input-container>
         </md-card-content>
         <md-card-actions align="center">
-            <button md-button color="primary" [disabled]="registerForm.invalid">Register</button>
-            <a [routerLink]="['','login']" md-button color="warn">Cancel</a>
+            <button md-button color="primary" [disabled]="registerForm.invalid">Registrar</button>
+            <a [routerLink]="['','login']" md-button color="warn">Cancelar</a>
         </md-card-actions>
 
     </md-card>

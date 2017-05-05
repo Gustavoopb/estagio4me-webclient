@@ -5,6 +5,7 @@ import { LoginService } from '../../service/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, Route } from '@angular/router';
 import { RegisterFormComponent } from "../register-form/register-form.component";
+import { UserModel } from "../../model/user.model";
 
 @Component({
   selector: 'login-form',
@@ -13,8 +14,7 @@ import { RegisterFormComponent } from "../register-form/register-form.component"
 
 })
 export class LoginFormComponent implements OnInit {
-  @Input() username: String
-  @Input() password: String
+  @Input() public user: UserModel = new UserModel()
   public loginForm: FormGroup
   public route: Route
 
@@ -29,10 +29,10 @@ export class LoginFormComponent implements OnInit {
 
   public login($event) {
     event.preventDefault()
-    this.loginService.login({ username: this.username, password: this.password }).subscribe(res => {
+    this.loginService.login(this.user).subscribe(res => {
       var body = res.json()
       this.loginService.storeLogin(body['user'], body['token'])
-      this.snackBar.open(body['message'], "close", {
+      this.snackBar.open(body['message'], "x", {
         duration: 3000,
       })
       this.router.navigate(['/home'])
@@ -43,6 +43,6 @@ export class LoginFormComponent implements OnInit {
 
   public formatUsername(){
     let regex: RegExp = /[^\w\s@._-]/gi
-    this.username = this.username.toLowerCase().replace(regex, '').replace(' ', '')
+    this.user.username = this.user.username.toLowerCase().replace(regex, '').replace(' ', '')
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { MdSnackBar } from '@angular/material'
 
 import { RegisterService } from '../../service/register.service';
+import { UserModel } from "../../model/user.model";
 
 @Component({
   selector: 'register-form',
@@ -12,17 +12,13 @@ import { RegisterService } from '../../service/register.service';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit {
-  @Input() firstName: String
-  @Input() secondName: String
-  @Input() password: String
-  @Input() email: String
-  @Input() username: String
+  @Input() public user: UserModel = new UserModel()
   public registerForm: FormGroup
 
   constructor(fb: FormBuilder, public registerService: RegisterService, public router: Router, public snackBar: MdSnackBar) {
     this.registerForm = fb.group({
       firstName: ['', Validators.required],
-      secondName: ['', Validators.required],
+      lastName: ['', Validators.required],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)])],
       username: ['', Validators.required]
@@ -34,22 +30,16 @@ export class RegisterFormComponent implements OnInit {
 
   public submitRegistration(event) {
     event.preventDefault()
-    this.registerService.regiterUser({
-      "email": this.email,
-      "firstName": this.firstName,
-      "secondName": this.secondName,
-      "password": this.password,
-      "username": this.username
-    }).subscribe(res => {
+    this.registerService.regiterUser(this.user).subscribe(res => {
       this.router.navigate(['', 'login'])
-      this.snackBar.open(res.json()['message'], "close", {
+      this.snackBar.open(res.json()['message'], "x", {
         duration: 3000,
       })
     },
       err => {
         console.log(err)
       }
-      )
+    )
   }
 
   public checkEmailUsername(event: any) {

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule, XHRBackend, RequestOptions } from '@angular/http'
-import { MaterialModule } from '@angular/material'
+import { MaterialModule, MdDialogRef } from '@angular/material'
 import { NgModule } from '@angular/core'
 import { Router } from '@angular/router'
 
@@ -21,14 +21,28 @@ import { InternshipService } from "./service/internship.service"
 import { SkillService } from "./service/skill.service"
 import { CurrencyMaskModule } from "ng2-currency-mask"
 import { CanActivateAdminComponentService } from "./service/can-activate-admin-component.service";
+import { SidenavMenuComponent } from './component/sidenav-menu/sidenav-menu.component';
+import { InternshipDetailComponent } from './component/internship-detail/internship-detail.component';
+import { InternshipAdminButtonsComponent } from './component/internship-admin-buttons/internship-admin-buttons.component';
+import { InternshipModel } from "./model/internship.model";
+import { UserModel } from "./model/user.model";
+import { SkillModel } from "./model/skill.model";
+import { AbstractModel } from "./model/abstract/abstract.model";
+import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
+import { AboutComponent } from './component/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent,
+    ConfirmDialogComponent,
     HomeComponent,
+    InternshipAdminButtonsComponent,
+    InternshipDetailComponent,
+    InternshipFormComponent,
+    LoginFormComponent,
     RegisterFormComponent,
-    InternshipFormComponent
+    SidenavMenuComponent,
+    AboutComponent
   ],
   imports: [
     CurrencyMaskModule,
@@ -53,6 +67,8 @@ import { CanActivateAdminComponentService } from "./service/can-activate-admin-c
 
     CanActivateAdminComponentService,
     CanActivateViaAuthGuardService
-  ], bootstrap: [AppComponent]
+  ],
+  entryComponents: [ConfirmDialogComponent]
+  , bootstrap: [AppComponent]
 })
 export class AppModule { }

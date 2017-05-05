@@ -1,12 +1,14 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { InternshipService } from "../../service/internship.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { SkillService } from "../../service/skill.service";
 import { MdAutocompleteTrigger, MdSlider } from "@angular/material";
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 import { MdOptionSelectEvent } from "@angular/material/core/option/option";
+import { InternshipModel } from "../../model/internship.model";
+import { SkillModel } from "../../model/skill.model";
 
 
 @Component({
@@ -16,26 +18,15 @@ import { MdOptionSelectEvent } from "@angular/material/core/option/option";
 })
 export class InternshipFormComponent implements OnInit {
 
-  @Input() companyName: String
-  @Input() role: String
-  @Input() compensation: Number
-  @Input() isCompanyPrivate: Boolean = false
-  @Input() isCompensationPrivate: Boolean = false
-  requiredSkills = []
-  preferedSkills = []
-  @Input() contact: String
-  @Input() area: String
+  @Input() internship: InternshipModel
   @ViewChild(MdSlider) slider: MdSlider
-  sub: Subscription
-
-
-  public skills: Array<Object>
+  private _sub: Subscription
+  public skills: SkillModel[]
   public filteredSkills: any
   public inputSkillSelected: string
-
   public internshipForm: FormGroup
 
-  constructor(fb: FormBuilder, public internshipService: InternshipService, public router: Router, public skillService: SkillService) {
+  constructor(public activatedRoute: ActivatedRoute, fb: FormBuilder, public internshipService: InternshipService, public router: Router, public skillService: SkillService) {
     this.internshipForm = fb.group({
       companyName: ['', Validators.required],
       role: ['', Validators.required],
@@ -43,16 +34,31 @@ export class InternshipFormComponent implements OnInit {
       isCompanyPrivate: ['', Validators.required],
       isCompensationPrivate: ['', Validators.required],
       requiredSkills: ['', Validators.required],
-      preferedSkills: ['', Validators.required],
+      preferredSkills: ['', Validators.required],
       contact: ['', Validators.required],
-      area: ['', Validators.required]
+      area: ['', Validators.required],
+      description: ['', Validators.required]
+    })
+    this.internship = new InternshipModel()
+    this.internship.requiredSkills = []
+    this.internship.preferredSkills = []
+    this._sub = this.activatedRoute.params.subscribe((param) => {
+      if (param['_id']) {
+        this.internshipService.findOneByFilter(param).subscribe(res => {
+          if(res.json()){
+          this.internship.setValues(res.json())
+          }else{
+            this.router.navigate(['/home'])
+          }
+        })
+      }
     })
   }
 
   ngOnInit() {
     this.skillService.findAll().subscribe(
       res => {
-        this.skills = res.json()
+        this.skills = res.json().map(data => new SkillModel(data))
       },
       err => {
         console.log(err)
@@ -61,14 +67,14 @@ export class InternshipFormComponent implements OnInit {
 
   addSkill(event: MdOptionSelectEvent) {
     var has: boolean = false
-    this[this.inputSkillSelected].filter(ob => {
-      if (ob.name == event.source.value.name) {
+    this.internship[this.inputSkillSelected].filter((skill: SkillModel) => {
+      if (skill.name == event.source.value.name) {
         has = true
         return
       }
     })
     if (!has) {
-      this[this.inputSkillSelected].push(event.source.value)
+      this.internship[this.inputSkillSelected].push(event.source.value)
     }
     this.internshipForm.get(this.inputSkillSelected).setValue('')
   }
@@ -83,39 +89,40 @@ export class InternshipFormComponent implements OnInit {
 
   removeSkill(event: any, skill: Object, from: string) {
     event.preventDefault()
-    var index = this[from].indexOf(skill, 0);
+    var index = this.internship[from].indexOf(skill, 0);
     if (index > -1) {
-      this[from].splice(index, 1);
+      this.internship[from].splice(index, 1);
     }
   }
 
-  filterSkills(val: string) {
-     var result =  val ? this.skills.filter((skill) => new RegExp(val, 'gi').test(skill['name'])) : this.skills;
-     return result.length > 15 ? result.slice(0, 5) : result
+  filterSkills(val: string): SkillModel[] {
+    var result = val ? this.skills.filter((skill: SkillModel) => new RegExp(val, 'gi').test(skill.name)) : this.skills;
+    return result.length > 15 ? result.slice(0, 5) : result
 
   }
 
-  displarParser(skill: any) {
+  displarParser(skill: SkillModel) {
     return skill ? skill.name : skill
   }
 
   submitInternship(event: any) {
     event.preventDefault()
-    var internship = {
-      companyName: this.companyName,
-      role: this.role,
-      compensation: this.compensation,
-      isCompanyPrivate: this.isCompanyPrivate,
-      isCompensationPrivate: this.isCompensationPrivate,
-      requiredSkills: this.requiredSkills,
-      preferedSkills: this.preferedSkills,
-      contact: this.contact,
-      area: this.area
+    if (this.internship.id) {
+      console.log("Edit")
+      this.internshipService.update(this.internship).subscribe(res => {
+        this.internship = new InternshipModel(res.json())
+        this.router.navigate(['/internship', 'detail', this.internship.id])
+      }, err => {
+        console.log(err)
+      })
+    } else {
+      console.log("New")
+      this.internshipService.insert(this.internship).subscribe(res => {
+        this.internship = new InternshipModel(res.json())
+        this.router.navigate(['/internship', 'detail', this.internship.id])
+      }, err => {
+        console.log(err)
+      })
     }
-    this.internshipService.insert(internship).subscribe(res => {
-      this.router.navigate(['', 'internship'])
-    }, err => {
-      console.log(err)
-    })
   }
 }

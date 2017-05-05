@@ -40,7 +40,6 @@ function checkRegister(control: FormControl, source: string): Observable<IUserna
             .subscribe(
             res => {
                 let reason;
-                console.log(res.text(), "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", res.text() != "null")
                 if (res.text() != "null") {
                     reason = source + "Taken"
                     obs.next({ [reason]: true });
@@ -51,7 +50,6 @@ function checkRegister(control: FormControl, source: string): Observable<IUserna
                 }
             },
             error => {
-                console.log(registerService, "\n<-----------------------------\n", error)
                 let message = error.message
                 obs.next(null);
                 obs.complete();

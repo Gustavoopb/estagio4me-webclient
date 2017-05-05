@@ -39,7 +39,7 @@ export class ExtendedHttp extends Http {
     return (res: Response) => {
       if (res.status === 401 || res.status === 403) {
         if (res.status === 401) {
-          this.router.navigate(['', 'register'])
+          // this.router.navigate(['', 'register'])
           console.log(res.text())
         }
         console.log(res)

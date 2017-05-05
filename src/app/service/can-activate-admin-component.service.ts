@@ -1,12 +1,12 @@
+import {LoginService} from './login.service';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CanActivateAdminComponentService {
 
-  constructor() { }
+  constructor(public loginService: LoginService) { }
 
   canActivate() {
-    var user = JSON.parse(localStorage.getItem('user'))
-    return user["isAdmin"];
+    return this.loginService.isAdmin()
   }
 }

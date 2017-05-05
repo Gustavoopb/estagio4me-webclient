@@ -3,6 +3,7 @@ import { Response } from '@angular/http'
 import { Observable } from 'rxjs'
 import { ExtendedHttp } from './extended-http.service'
 import { AbstractService } from "./abstract/abstract.service";
+import { UserModel } from "../model/user.model";
 
 
 @Injectable()
@@ -12,17 +13,11 @@ export class RegisterService extends AbstractService {
     super('/api/login')
   }
 
-  public regiterUser(user: any): Observable<Response> {
+  public regiterUser(user: UserModel): Observable<Response> {
     var newUser = {
-      "password": user.password,
-      "user": {
-        "email": user.email,
-        "firstName": user.firstName,
-        "secondName": user.secondName,
-        "username": user.username
-      }
+      password: user.password,
+      user: user
     }
-    console.log(JSON.stringify(newUser))
     return this.extendedHttp.post(this.getURL("/singUp"), newUser)
   }
 

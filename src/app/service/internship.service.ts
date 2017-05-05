@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core'
 import { ExtendedHttp } from "./extended-http.service"
 import { Observable } from "rxjs"
 import { AbstractService } from "./abstract/abstract.service"
+import { InternshipModel } from "../model/internship.model";
 
 @Injectable()
-export class InternshipService extends AbstractService{
+export class InternshipService extends AbstractService {
 
   constructor(public extendedHttp: ExtendedHttp) {
     super('/api/internship')
-   }
+  }
 
-  public insert(internship: any): Observable<Response> {
+  public insert(internship: InternshipModel): Observable<Response> {
     return this.extendedHttp.post(this.getURL('/insert'), internship)
   }
 
@@ -23,7 +24,15 @@ export class InternshipService extends AbstractService{
     return this.extendedHttp.post(this.getURL('/findByFilter'), filter)
   }
 
-  public update(body: Object){
+  public findOneByFilter(filter: Object): Observable<Response> {
+    return this.extendedHttp.post(this.getURL('/findOneByFilter'), filter)
+  }
+
+  public update(body: Object): Observable<Response> {
     return this.extendedHttp.post(this.getURL('/updateOne'), body)
+  }
+
+  public delete(internship: InternshipModel): Observable<Response> {
+    return this.extendedHttp.delete(this.getURL('/delete') + '/' + internship.id)
   }
 }

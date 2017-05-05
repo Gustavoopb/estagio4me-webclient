@@ -1,0 +1,8 @@
+<h6 md-dialog-title>Pense bem...</h6>
+<div md-dialog-content>
+  <span>Você realmente deseja fazer isso?</span>
+  </div>
+<div md-dialog-actions>
+  <button md-button [color]="'primary'" (click)="dialogRef.close(true)">Confirmar</button>
+  <button md-button [color]="'warn'" (click)="dialogRef.close(false)">Cancelar</button>
+</div>

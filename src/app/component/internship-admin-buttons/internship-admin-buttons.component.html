@@ -1,0 +1,15 @@
+<div md-line>
+  <ng-content></ng-content>
+    <button md-icon-button [color]="getInternshipColor()" (click)="activeIntenrship()" *ngIf="isAdminUser()">
+  <md-icon>{{internship.isActive ? "check" : "clear"}}</md-icon>
+  </button>
+  <a md-icon-button [color]="getInternshipColor()" *ngIf="isAdminUser()" [routerLink]="['/internship', 'edit', internship.id]">
+    <md-icon>mode_edit</md-icon>
+  </a>
+  <a md-icon-button [color]="'primary'" *ngIf="isAdminUser()" [routerLink]="['/internship', 'new']">
+    <md-icon>add</md-icon>
+  </a>
+  <button md-icon-button [color]="'warn'" *ngIf="isAdminUser()" (click)="openDialog()">
+    <md-icon>delete_forever</md-icon>
+  </button>
+</div>
