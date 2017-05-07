@@ -1,3 +1,4 @@
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule, XHRBackend, RequestOptions } from '@angular/http'
@@ -30,6 +31,10 @@ import { SkillModel } from "./model/skill.model";
 import { AbstractModel } from "./model/abstract/abstract.model";
 import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
 import { AboutComponent } from './component/about/about.component';
+import { StarsComponent } from './component/stars/stars.component';
+import { RatingService } from "./service/rating.service";
+import { InternshipListItemComponent } from './component/internship-list-item/internship-list-item.component';
+import { RatingComponent } from './component/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,10 @@ import { AboutComponent } from './component/about/about.component';
     LoginFormComponent,
     RegisterFormComponent,
     SidenavMenuComponent,
-    AboutComponent
+    AboutComponent,
+    StarsComponent,
+    InternshipListItemComponent,
+    RatingComponent
   ],
   imports: [
     CurrencyMaskModule,
@@ -51,6 +59,7 @@ import { AboutComponent } from './component/about/about.component';
     ReactiveFormsModule,
     HttpModule,
     MaterialModule,
+    BrowserAnimationsModule,
     routing
   ],
   providers: [
@@ -62,6 +71,7 @@ import { AboutComponent } from './component/about/about.component';
 
     InternshipService,
     LoginService,
+    RatingService,
     RegisterService,
     SkillService,
 

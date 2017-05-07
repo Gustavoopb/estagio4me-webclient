@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MdSnackBar } from '@angular/material'
-
 import { RegisterService } from '../../service/register.service';
 import { UserModel } from "../../model/user.model";
 

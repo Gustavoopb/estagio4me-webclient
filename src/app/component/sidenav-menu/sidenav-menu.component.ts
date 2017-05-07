@@ -1,4 +1,4 @@
-import { MdSidenav } from '@angular/material/sidenav';
+import { MdSidenav } from '@angular/material';
 import { LoginService } from '../../service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
@@ -30,8 +30,8 @@ export class SidenavMenuComponent implements OnInit {
         label: 'Novo Estágio',
         render: this.isAdminUser()
       }, {
-        routerLink: ['/stared'],
-        label: 'Estrelas',
+        routerLink: ['/ratings'],
+        label: 'Avaliações',
         render: this.isLoggedIn()
       }, {
         routerLink: ['/about'],

@@ -11,6 +11,17 @@ export class UserModel extends AbstractModel{
 
     constructor(data = {}){
         super(data)
+        this.setValues(data)
+    }
+
+    public setValues(data){
+        super.setValues(data)
+        this._firstName = data["_firstName"]
+        this._lastName = data["_lastName"]
+        this._email = data["_email"]
+        this._password = data["_password"]
+        this._username = data["_username"]
+        this._isAdmin = data["_isAdmin"]
     }
 
     public get firstName(): string {

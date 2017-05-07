@@ -16,24 +16,31 @@ export class InternshipModel extends AbstractModel {
 
     constructor(data = {}) {
         super(data)
-        if (data['_requiredSkills']) {
-            this._requiredSkills = data['_requiredSkills'].map((sk) => new SkillModel(sk))
-        }
-
-        if (data['_preferredSkills']) {
-            this._preferredSkills = data['_preferredSkills'].map((sk) => new SkillModel(sk))
-        }
+        this.setValues(data)
     }
 
-    public setValues(data = {}) {
+    public setValues(data) {
         super.setValues(data)
+        this._companyName = data["_companyName"]
+        this._role = data["_role"]
         if (data['_requiredSkills']) {
             this._requiredSkills = data['_requiredSkills'].map((sk) => new SkillModel(sk))
         }
-
         if (data['_preferredSkills']) {
             this._preferredSkills = data['_preferredSkills'].map((sk) => new SkillModel(sk))
         }
+        this._compensation = data["_compensation"]
+        this._isCompanyPrivate = data["_isCompanyPrivate"]
+        this._isCompensationPrivate = data["_isCompensationPrivate"]
+        this._isActive = data["_isActive"]
+        this._contact = data["_contact"]
+        this._area = data["_area"]
+        this._description = data["_description"]
+
+    }
+
+    public get color(): String {
+        return this.isActive ? "primary" : "warn"
     }
 
     public get companyName(): String {

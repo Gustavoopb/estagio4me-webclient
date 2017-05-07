@@ -4,16 +4,16 @@ export class AbstractModel {
     private _updatedAt: Date
 
     constructor(data = {}) {
-        for (let key in data) {
-            this[key] = data[key]
-        }
+        this.setValues(data)
     }
 
-    public setValues(data = {}) {
-        for (let key in data) {
-            this[key] = data[key]
+    public setValues(data) {
+        if(!data){
+            return
         }
-
+        this._id = data["_id"]
+        this._createdAt = data["_createdAt"]
+        this._updatedAt = data["_updatedAt"]
     }
 
     public get id() {
@@ -22,6 +22,10 @@ export class AbstractModel {
 
     public get createdAt(): Date {
         return this._createdAt
+    }
+
+    public set createdAt(v: Date){
+        this._createdAt = v
     }
 
     public get updatedAt(): Date {

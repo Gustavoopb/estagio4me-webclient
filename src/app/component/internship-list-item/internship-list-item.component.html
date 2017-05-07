@@ -1,0 +1,13 @@
+<md-list-item>
+  <md-icon md-list-avatar [color]="internship.color">work</md-icon>
+  <span md-line>{{internship.role}} at {{internship.isCompanyPrivate ? "Empresa Confidencial" : internship.companyName}}</span>
+  <span md-line *ngIf="internship.isCompensationPrivate">O valor da bolsa é privada.</span>
+  <span md-line *ngIf="!internship.isCompensationPrivate">Bolsa estágio de: {{internship.compensation | currency:'BRL':true:'1.2-2'}}</span>
+  <md-chip-list md-line>
+    <md-chip *ngFor="let skill of internship.requiredSkills">{{skill.name}}</md-chip>
+  </md-chip-list>
+  <div>
+    <ng-content></ng-content>
+  </div>
+</md-list-item>
+<md-divider></md-divider>

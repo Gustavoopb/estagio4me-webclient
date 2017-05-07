@@ -1,5 +1,4 @@
-import { MdDialog } from '@angular/material/dialog';
-import { MdSnackBar } from '@angular/material/snack-bar';
+import { MdSnackBar, MdDialog } from "@angular/material";
 import { Component, OnInit, Input } from '@angular/core'
 import { LoginService } from '../../service/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

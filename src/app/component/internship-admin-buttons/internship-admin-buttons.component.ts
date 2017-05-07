@@ -32,10 +32,6 @@ export class InternshipAdminButtonsComponent implements OnInit {
     })
   }
 
-  public getInternshipColor() {
-    return this.internship.isActive ? "primary" : "warn"
-  }
-
   public openDialog() {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe(result => {

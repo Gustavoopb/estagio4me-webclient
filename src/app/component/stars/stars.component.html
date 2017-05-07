@@ -1,0 +1,7 @@
+<div md-line *ngIf="starsArray; else loading">
+  <button md-icon-button [disabled]="disabled" [color]="'primary'" (click)="rate(star.key)" *ngFor="let star of starsArray">
+      <md-icon>{{star.icon}}</md-icon>
+  </button>
+</div>
+
+<ng-template #loading>Loading...</ng-template>

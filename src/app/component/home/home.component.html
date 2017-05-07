@@ -2,33 +2,22 @@
     <md-card-content align="center">
         <md-card-title-group>
             <md-card-title>Bem-vindo!</md-card-title>
-            <!--<button md-icon-button color="primary" (click)="reloadInternships()">
-                <md-icon>refresh</md-icon>
-            </button>-->
         </md-card-title-group>
-        <md-list align="left" *ngIf="internships.length > 0">
+        <md-list align="left" *ngIf="internships.length; else sorry">
             <span md-subheader>Novidades</span>
             <div *ngFor="let internship of internships">
-                <md-list-item>
-                    <md-icon md-list-avatar [color]="getInternshipColor(internship.isActive)">work</md-icon>
-                    <span md-line>{{internship.role}} at {{internship.isCompanyPrivate ? "Empresa Confidencial" : internship.companyName}}</span>
-                    <span md-line *ngIf="internship.isCompensationPrivate">O valor da bolsa é privada.</span>
-                    <span md-line *ngIf="!internship.isCompensationPrivate">Bolsa estágio de: {{internship.compensation | currency:'BRL':true:'1.2-2'}}</span>
-                    <md-chip-list md-line>
-                        <md-chip *ngFor="let skill of internship.requiredSkills">{{skill.name}}</md-chip>
-                    </md-chip-list>
-                    <div>
-                        <internship-admin-buttons [internship]="internship">
-                            <a md-icon-button [color]="getInternshipColor(internship.isActive)" *ngIf="isLoggedIn()" [routerLink]="['/internship', 'detail', internship.id]">
-                                <md-icon>more_horiz</md-icon>
-                            </a>
-                        </internship-admin-buttons>
-                    </div>
-                </md-list-item>
-                <md-divider></md-divider>
+                <internship-list-item [internship]="internship">
+                    <internship-admin-buttons [internship]="internship">
+                        <a md-icon-button [color]="internship.color" *ngIf="isLoggedIn()" [routerLink]="['/internship', 'detail', internship.id]">
+                            <md-icon>more_horiz</md-icon>
+                        </a>
+                    </internship-admin-buttons>
+                </internship-list-item>
             </div>
         </md-list>
-        <p md-line *ngIf="!internships.length > 0">Desculpa, mas nós iremos achar o estágio pra você o mais rápido possível.</p>
+        <ng-template #sorry>
+            <p md-line>Desculpa, mas nós iremos achar o estágio pra você o mais rápido possível.</p>
+        </ng-template>
     </md-card-content>
 
     <md-card-actions align="center">

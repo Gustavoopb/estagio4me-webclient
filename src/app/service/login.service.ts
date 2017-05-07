@@ -19,11 +19,12 @@ export class LoginService extends AbstractService {
   }
 
   public login(user: any): Observable<Response> {
-    return this.extendedHttp.post(this.getURL("/login"), user)
+    console.log(this.getURL(["/login"]))
+    return this.extendedHttp.post(this.getURL(["/login"]), user)
   }
 
   public reAuth(): Observable<Response> {
-    return this.extendedHttp.get(this.getURL("/reAuth"))
+    return this.extendedHttp.get(this.getURL(["/reAuth"]))
   }
 
   public logout(): void {

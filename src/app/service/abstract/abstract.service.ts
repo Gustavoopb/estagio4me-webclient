@@ -1,13 +1,15 @@
 import { environment } from "../../../environments/environment";
 
 export abstract class AbstractService {
-    url: string = environment.production ? 'https://estagio4me-server.herokuapp.com' : 'http://localhost:3000'
+    private _url: String = environment.production ? 'https://estagio4me-server.herokuapp.com' : 'http://localhost:3000'
+    private _path: String
 
-    constructor(url: string){
-        this.url += url
+    constructor(path: string) {
+        this._path = path
+
     }
 
-    getURL(url: string){
-        return this.url + url
+    public getURL(url: Array<String>) {
+        return this._url.concat(this._path.concat(url.join("/")))
     }
 }

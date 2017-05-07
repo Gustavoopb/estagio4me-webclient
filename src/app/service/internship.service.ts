@@ -13,26 +13,26 @@ export class InternshipService extends AbstractService {
   }
 
   public insert(internship: InternshipModel): Observable<Response> {
-    return this.extendedHttp.post(this.getURL('/insert'), internship)
+    return this.extendedHttp.post(this.getURL(['/insert']), internship)
   }
 
   public findAll(): Observable<Response> {
-    return this.extendedHttp.get(this.getURL('/findAll'))
+    return this.extendedHttp.get(this.getURL(['/findAll']))
   }
 
   public findByFilter(filter: Object): Observable<Response> {
-    return this.extendedHttp.post(this.getURL('/findByFilter'), filter)
+    return this.extendedHttp.post(this.getURL(['/findByFilter']), filter)
   }
 
   public findOneByFilter(filter: Object): Observable<Response> {
-    return this.extendedHttp.post(this.getURL('/findOneByFilter'), filter)
+    return this.extendedHttp.post(this.getURL(['/findOneByFilter']), filter)
   }
 
   public update(body: Object): Observable<Response> {
-    return this.extendedHttp.post(this.getURL('/updateOne'), body)
+    return this.extendedHttp.post(this.getURL(['/updateOne']), body)
   }
 
   public delete(internship: InternshipModel): Observable<Response> {
-    return this.extendedHttp.delete(this.getURL('/delete') + '/' + internship.id)
+    return this.extendedHttp.delete(this.getURL(['/delete', internship.id]))
   }
 }

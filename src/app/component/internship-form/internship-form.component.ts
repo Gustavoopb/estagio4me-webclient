@@ -6,7 +6,6 @@ import { SkillService } from "../../service/skill.service";
 import { MdAutocompleteTrigger, MdSlider } from "@angular/material";
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
-import { MdOptionSelectEvent } from "@angular/material/core/option/option";
 import { InternshipModel } from "../../model/internship.model";
 import { SkillModel } from "../../model/skill.model";
 
@@ -65,7 +64,7 @@ export class InternshipFormComponent implements OnInit {
       })
   }
 
-  addSkill(event: MdOptionSelectEvent) {
+  addSkill(event) {
     var has: boolean = false
     this.internship[this.inputSkillSelected].filter((skill: SkillModel) => {
       if (skill.name == event.source.value.name) {

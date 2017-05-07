@@ -18,11 +18,11 @@ export class RegisterService extends AbstractService {
       password: user.password,
       user: user
     }
-    return this.extendedHttp.post(this.getURL("/singUp"), newUser)
+    return this.extendedHttp.post(this.getURL(["/singUp"]), newUser)
   }
 
   public checkEmailUsername(condition: any): Observable<Response> {
-    return this.extendedHttp.post(this.getURL("/checkEmailUsername"), condition)
+    return this.extendedHttp.post(this.getURL(["/checkEmailUsername"]), condition)
   }
 
 }

@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   public internships: Array<InternshipModel> = []
 
-  constructor(public router: Router, public loginService: LoginService, public internshipService: InternshipService) { }
+  constructor(public loginService: LoginService, public internshipService: InternshipService) { }
 
   ngOnInit() {
     this.reloadInternships()

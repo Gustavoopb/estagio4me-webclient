@@ -1,0 +1,21 @@
+<md-card align="center">
+  <md-card-content align="center">
+    <md-card-title-group>
+      <md-card-title>Avaliações</md-card-title>
+    </md-card-title-group>
+    <md-list align="left" *ngIf="ratings.length; else sorry">
+      <span md-subheader>Essas foram as que você avaliou</span>
+      <div *ngFor="let rating of ratings">
+        <internship-list-item [internship]="rating.internship">
+          <stars [value]="rating.stars" [disabled]="true"></stars>
+        </internship-list-item>
+      </div>
+    </md-list>
+    <ng-template #sorry>
+      <p md-line>Você ainda não avaliou nenhum estágio, corre lá!</p>
+    </ng-template>
+
+  </md-card-content>
+  <md-card-actions align="center">
+  </md-card-actions>
+</md-card>

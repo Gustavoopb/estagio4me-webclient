@@ -34,6 +34,7 @@
           <span md-line>Contato: <a [style.text-decoration]="'none'" [style.color]="'black'" href="mailto:{{internship.contact}}">{{internship.contact}}</a> </span>
         </div>
         <div>
+          <stars [value]="rating.stars" (rating)="starEvent($event)" *ngIf="rating.stars != undefined"></stars>
           <internship-admin-buttons [internship]="internship"></internship-admin-buttons>
         </div>
       </md-list-item>
