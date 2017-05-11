@@ -6,30 +6,30 @@
         <md-card-title>{{internship.id? "Editar estágio" : "Novo estágio"}}</md-card-title>
       </md-card-title-group>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
         <input [style.width]="'80%'" mdInput formControlName="companyName" name="companyName" [(ngModel)]="internship.companyName"
           type="text" required placeholder="Empresa">
         <md-checkbox [style.float]="'right'" mdTooltip="O nome da sua empresa é confidencial?" [mdTooltipPosition]="'above'" name="isCompanyPrivate"
           formControlName="isCompanyPrivate" [(ngModel)]="internship.isCompanyPrivate" color="primary"></md-checkbox>
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="role" name="role" [(ngModel)]="internship.role" type="text" required placeholder="Cargo">
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="contact" name="email" [(ngModel)]="internship.contact" type="email" required placeholder="Email de contato">
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="area" name="area" [(ngModel)]="internship.area" type="text" required placeholder="Area">
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
         <textarea mdInput formControlName="description" name="description" [(ngModel)]="internship.description" required placeholder="Descrição"></textarea>
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="requiredSkills" name="requiredSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Obrigatórios"
           (focus)="changeComplete($event)">
       </md-input-container>
@@ -41,7 +41,7 @@
           </button>
         </span>
       </div>
-      <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="preferredSkills" name="preferredSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Desejáveis"
           (focus)="changeComplete($event)">
       </md-input-container>
@@ -56,7 +56,7 @@
 
       <div class="compensation row">
         <label>Bolsa estágio</label>
-        <md-slider class="example-margin" [(value)]="compensation" color="primary" [style.width]="'81%'" min="500" max="1800" step="25"
+        <md-slider class="example-margin" [(value)]="internship.compensation" color="primary" [style.width]="'81%'" min="500" max="1800" step="25"
           thumbLabel="true" [(ngModel)]="internship.compensation" formControlName="compensation">
         </md-slider>
         <md-checkbox class="intenship-checkbox" mdTooltip="O valor da bolsa é confidencial?" [mdTooltipPosition]="'above'" name="isCompensationPrivate"

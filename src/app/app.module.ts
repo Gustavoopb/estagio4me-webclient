@@ -13,7 +13,7 @@ import { RegisterFormComponent } from './component/register-form/register-form.c
 
 import { routing } from './routing/app.routing'
 
-import { CanActivateViaAuthGuardService } from './service/can-activate-via-auth-guard.service'
+import { CanActivateViaAuthGuardService } from './service/can-activate/can-activate-via-auth-guard.service'
 import { ExtendedHttp } from './service/extended-http.service'
 import { LoginService } from './service/login.service'
 import { RegisterService } from './service/register.service'
@@ -21,7 +21,7 @@ import { InternshipFormComponent } from './component/internship-form/internship-
 import { InternshipService } from "./service/internship.service"
 import { SkillService } from "./service/skill.service"
 import { CurrencyMaskModule } from "ng2-currency-mask"
-import { CanActivateAdminComponentService } from "./service/can-activate-admin-component.service";
+import { CanActivateAdminComponentService } from "./service/can-activate/can-activate-admin-component.service";
 import { SidenavMenuComponent } from './component/sidenav-menu/sidenav-menu.component';
 import { InternshipDetailComponent } from './component/internship-detail/internship-detail.component';
 import { InternshipAdminButtonsComponent } from './component/internship-admin-buttons/internship-admin-buttons.component';
@@ -35,6 +35,7 @@ import { StarsComponent } from './component/stars/stars.component';
 import { RatingService } from "./service/rating.service";
 import { InternshipListItemComponent } from './component/internship-list-item/internship-list-item.component';
 import { RatingComponent } from './component/rating/rating.component';
+import { CanActivateUnloggedService } from "./service/can-activate/can-activate-unlogged.service";
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { RatingComponent } from './component/rating/rating.component';
     SkillService,
 
     CanActivateAdminComponentService,
-    CanActivateViaAuthGuardService
+    CanActivateViaAuthGuardService,
+    CanActivateUnloggedService
   ],
   entryComponents: [ConfirmDialogComponent]
   , bootstrap: [AppComponent]

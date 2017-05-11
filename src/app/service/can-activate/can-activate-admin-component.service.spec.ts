@@ -1,6 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CanActivateAdminComponentService } from './can-activate-adming-component.service';
+import { CanActivateAdminComponentService } from './can-activate-admin-component.service';
+
 
 describe('CanActivateAdminComponentService', () => {
   beforeEach(() => {

@@ -36,6 +36,9 @@ export class LoginFormComponent implements OnInit {
       })
       this.router.navigate(['/home'])
     }, error => {
+      this.snackBar.open("Ops, você digitou login e senha corretamente?", "x", {
+        duration: 3000,
+      })
       console.log(error)
     })
   }

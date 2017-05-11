@@ -4,18 +4,18 @@
             <md-card-title-group>
                 <md-card-title>Bem-vindo!</md-card-title>
             </md-card-title-group>
-            <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+            <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'90%'">
                 <input mdInput formControlName="username" name="username" [(ngModel)]="user.username" type="username" required placeholder="Usuário" (keyup)="formatUsername()">
             </md-input-container>
             <br>
-            <md-input-container [floatPlaceholder]="always" dividerColor="primary" align="start" [style.width]="'90%'">
+            <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'90%'">
                 <input mdInput formControlName="password" name="password" [(ngModel)]="user.password" type="password" required placeholder="Senha">
             </md-input-container>
         </md-card-content>
 
         <md-card-actions align="center">
-            <button md-button color="primary">Login</button>
-            <a [routerLink]="['','register']" md-button color="accent">Registrar</a>
+            <button md-button color="primary" [disabled]="loginForm.invalid">Login</button>
+            <a [routerLink]="['/register']" md-button color="accent">Registrar</a>
         </md-card-actions>
     </md-card>
 </form>
