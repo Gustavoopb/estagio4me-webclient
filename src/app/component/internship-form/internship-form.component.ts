@@ -101,17 +101,6 @@ export class InternshipFormComponent implements OnInit {
   }
 
   displayParser(skill: SkillModel) {
-    // var has: boolean = false
-    // this.internship[this.inputSkillSelected].filter((sk: SkillModel) => {
-    //   if (sk.name == skill.name) {
-    //     has = true
-    //     return
-    //   }
-    // })
-    // if (!has) {
-    //   this.internship[this.inputSkillSelected].push(skill)
-    // }
-    // this.internshipForm.get(this.inputSkillSelected).setValue('')
     return skill ? skill.name : skill
   }
 
