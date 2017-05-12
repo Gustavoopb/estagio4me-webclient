@@ -6,30 +6,30 @@
         <md-card-title>{{internship.id? "Editar estágio" : "Novo estágio"}}</md-card-title>
       </md-card-title-group>
 
-      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
         <input [style.width]="'80%'" mdInput formControlName="companyName" name="companyName" [(ngModel)]="internship.companyName"
           type="text" required placeholder="Empresa">
         <md-checkbox [style.float]="'right'" mdTooltip="O nome da sua empresa é confidencial?" [mdTooltipPosition]="'above'" name="isCompanyPrivate"
           formControlName="isCompanyPrivate" [(ngModel)]="internship.isCompanyPrivate" color="primary"></md-checkbox>
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="role" name="role" [(ngModel)]="internship.role" type="text" required placeholder="Cargo">
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="contact" name="email" [(ngModel)]="internship.contact" type="email" required placeholder="Email de contato">
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="area" name="area" [(ngModel)]="internship.area" type="text" required placeholder="Area">
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
         <textarea mdInput formControlName="description" name="description" [(ngModel)]="internship.description" required placeholder="Descrição"></textarea>
       </md-input-container>
 
-      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="requiredSkills" name="requiredSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Obrigatórios"
           (focus)="changeComplete($event)">
       </md-input-container>
@@ -41,7 +41,7 @@
           </button>
         </span>
       </div>
-      <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'70%'">
+      <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
         <input mdInput formControlName="preferredSkills" name="preferredSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Desejáveis"
           (focus)="changeComplete($event)">
       </md-input-container>
@@ -64,8 +64,8 @@
       </div>
       <br/>
 
-      <md-autocomplete id="autoSkills" #autoSkills="mdAutocomplete" [displayWith]="displarParser">
-        <md-option *ngFor="let skill of filteredSkills | async" [value]="skill" (onSelect)="addSkill($event)">
+      <md-autocomplete id="autoSkills" #autoSkills="mdAutocomplete" [displayWith]="displayParser">
+        <md-option *ngFor="let skill of filteredSkills | async" [value]="skill" (onSelectionChange)="addSkill($event)">
           {{ skill.name }}
         </md-option>
       </md-autocomplete>

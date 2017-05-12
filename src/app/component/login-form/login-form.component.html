@@ -1,14 +1,15 @@
 <form [formGroup]="loginForm" (submit)="login($event)">
-    <md-card  align="center">
+    <md-card align="center">
         <md-card-content align="center">
             <md-card-title-group>
                 <md-card-title>Bem-vindo!</md-card-title>
             </md-card-title-group>
-            <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'90%'">
-                <input mdInput formControlName="username" name="username" [(ngModel)]="user.username" type="username" required placeholder="Usuário" (keyup)="formatUsername()">
+            <md-input-container dividerColor="primary" align="start" [style.width]="'90%'">
+                <input mdInput formControlName="username" name="username" [(ngModel)]="user.username" type="username" required placeholder="Usuário"
+                    (keyup)="formatUsername()">
             </md-input-container>
             <br>
-            <md-input-container [floatPlaceholder]="'always'" dividerColor="primary" align="start" [style.width]="'90%'">
+            <md-input-container dividerColor="primary" align="start" [style.width]="'90%'">
                 <input mdInput formControlName="password" name="password" [(ngModel)]="user.password" type="password" required placeholder="Senha">
             </md-input-container>
         </md-card-content>

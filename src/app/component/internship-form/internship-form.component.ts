@@ -64,10 +64,10 @@ export class InternshipFormComponent implements OnInit {
       })
   }
 
-  addSkill(event) {
+  public addSkill(event) {
     var has: boolean = false
-    this.internship[this.inputSkillSelected].filter((skill: SkillModel) => {
-      if (skill.name == event.source.value.name) {
+    this.internship[this.inputSkillSelected].forEach((skill: SkillModel) => {
+      if (typeof skill != undefined && skill.name == event.source.value.name) {
         has = true
         return
       }
@@ -100,7 +100,18 @@ export class InternshipFormComponent implements OnInit {
 
   }
 
-  displarParser(skill: SkillModel) {
+  displayParser(skill: SkillModel) {
+    // var has: boolean = false
+    // this.internship[this.inputSkillSelected].filter((sk: SkillModel) => {
+    //   if (sk.name == skill.name) {
+    //     has = true
+    //     return
+    //   }
+    // })
+    // if (!has) {
+    //   this.internship[this.inputSkillSelected].push(skill)
+    // }
+    // this.internshipForm.get(this.inputSkillSelected).setValue('')
     return skill ? skill.name : skill
   }
 
