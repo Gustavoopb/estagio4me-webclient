@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { MdSnackBar } from '@angular/material'
 import { RegisterService } from '../../service/register.service';
+import { Router } from '@angular/router';
 import { UserModel } from "../../model/user.model";
 
 @Component({

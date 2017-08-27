@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'stars',
@@ -11,15 +11,15 @@ export class StarsComponent implements OnInit {
   private _counterValue: number = 0;
   public starsArray: Array<Star>
 
- @Input() public disabled: Boolean = false
+  @Input() public disabled: Boolean = false
 
-  @Output() rating = new EventEmitter();
+  @Output("valueChange") rating = new EventEmitter();
 
   constructor() {
     this._counterValue = 0
   }
 
-  @Input()
+  @Input("value")
   get value() {
     return this._counterValue;
   }
@@ -47,7 +47,7 @@ export class StarsComponent implements OnInit {
 
   private loadStars() {
     let aux: number = isNaN(this._counterValue % 1) ? 0 : this._counterValue % 1
-    let selectedKey: number = aux ? this._counterValue - aux : this._counterValue 
+    let selectedKey: number = aux ? this._counterValue - aux : this._counterValue
     this.starsArray.forEach((star, index) => {
       star.value = index == selectedKey ? aux : selectedKey > index ? 1 : 0
     })

@@ -1,16 +1,16 @@
-import { MdSnackBar, MdDialog } from "@angular/material";
-import { Component, OnInit, Input } from '@angular/core'
-import { LoginService } from '../../service/login.service';
+import { Component, Input, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, Route } from '@angular/router';
+import { MdDialog, MdSnackBar } from "@angular/material";
+import { Route, Router } from '@angular/router';
+
+import { LoginService } from '../../service/login.service';
 import { RegisterFormComponent } from "../register-form/register-form.component";
 import { UserModel } from "../../model/user.model";
 
 @Component({
   selector: 'login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css'],
-
+  styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
   @Input() public user: UserModel = new UserModel()
@@ -43,7 +43,7 @@ export class LoginFormComponent implements OnInit {
     })
   }
 
-  public formatUsername(){
+  public formatUsername() {
     let regex: RegExp = /[^\w\s@._-]/gi
     this.user.username = this.user.username.toLowerCase().replace(regex, '').replace(' ', '')
   }

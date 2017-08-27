@@ -1,10 +1,11 @@
-import { RatingModel } from '../../model/rating.model';
 import { Component, OnInit } from '@angular/core';
+
+import { RatingModel } from '../../model/rating.model';
 import { RatingService } from "../../service/rating.service";
 import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-rating',
+  selector: 'rating',
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.css']
 })

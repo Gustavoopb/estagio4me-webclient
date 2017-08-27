@@ -1,0 +1,13 @@
+<md-card class="routed-card">
+  <md-card-title-group>
+    <md-card-title>
+      <ng-content select="routed-header"></ng-content>
+    </md-card-title>
+  </md-card-title-group>
+  <md-card-content align="center">
+    <ng-content select="routed-body"></ng-content>
+  </md-card-content>
+  <md-card-actions align="center">
+    <ng-content select="routed-footer"></ng-content>
+  </md-card-actions>
+</md-card>

@@ -1,8 +1,6 @@
-<md-card align="center">
-    <md-card-content align="center">
-        <md-card-title-group>
-            <md-card-title>Bem-vindo!</md-card-title>
-        </md-card-title-group>
+<routed-component>
+    <routed-header>Bem-vindo!</routed-header>
+    <routed-body>
         <md-list align="left" *ngIf="internships.length; else sorry">
             <span md-subheader>Novidades</span>
             <div *ngFor="let internship of internships">
@@ -18,9 +16,5 @@
         <ng-template #sorry>
             <p md-line>Desculpa, mas nós iremos achar o estágio pra você o mais rápido possível.</p>
         </ng-template>
-    </md-card-content>
-
-    <md-card-actions align="center">
-
-    </md-card-actions>
-</md-card>
+    </routed-body>
+</routed-component>

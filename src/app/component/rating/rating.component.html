@@ -7,6 +7,7 @@
       <span md-subheader>Essas foram as que você avaliou</span>
       <div *ngFor="let rating of ratings">
         <internship-list-item [internship]="rating.internship">
+          {{rating.stars}}
           <stars [value]="rating.stars" [disabled]="true"></stars>
         </internship-list-item>
       </div>

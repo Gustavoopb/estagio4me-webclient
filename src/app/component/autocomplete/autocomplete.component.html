@@ -1,0 +1,13 @@
+<md-input-container class="container" dividerColor="primary" align="start">
+  <input mdInput [formControl]="inputItem" name="inputItem" [mdAutocomplete]="autoComplete" type="text" [placeholder]="placeholder">
+</md-input-container>
+<md-chip-list class="chip-list" *ngIf="value.length">
+  <md-chip class="chip" mdTooltip="Click to Remove!" *ngFor="let item of value" [selected]="'true'" [color]="'primary'" (click)="removeItem(item)">
+    {{item[field]}}
+  </md-chip>
+</md-chip-list>
+<md-autocomplete #autoComplete="mdAutocomplete">
+  <md-option *ngFor="let item of filteredItems | async" (onSelectionChange)="addItem(item)">
+    {{ item[field] }}
+  </md-option>
+</md-autocomplete>

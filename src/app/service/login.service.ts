@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
-import { Observable } from 'rxjs';
-
-import { ExtendedHttp } from './extended-http.service';
 import { AbstractService } from "./abstract/abstract.service";
+import { ExtendedHttp } from './extended-http.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProfileModel } from "../model/profile.model";
+import { Response } from '@angular/http';
 import { UserModel } from "../model/user.model";
 
 @Injectable()

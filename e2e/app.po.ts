@@ -1,4 +1,4 @@
-import { browser, element, by } from 'protractor';
+import { browser, by, element } from 'protractor';
 
 export class Estagio4meWebclientPage {
   navigateTo() {
@@ -6,6 +6,6 @@ export class Estagio4meWebclientPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('root h1')).getText();
   }
 }

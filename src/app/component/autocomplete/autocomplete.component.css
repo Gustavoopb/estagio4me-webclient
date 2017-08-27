@@ -1,0 +1,17 @@
+:host,
+.container{
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.chip-list{
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.chip{
+    margin: 3px !important;
+}

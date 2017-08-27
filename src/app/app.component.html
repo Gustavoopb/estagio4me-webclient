@@ -6,7 +6,7 @@
     <span class="remaining-space"></span>
     <h3>
       <a [routerLink]="['', 'home']">
-        {{title}}
+        <img src="../assets/logo-h3.png" alt="Logo">
       </a>
     </h3>
     <span class="remaining-space"></span>
@@ -15,17 +15,14 @@
     </a>
     <button md-raised-button color="primary" [mdMenuTriggerFor]="menu" *ngIf="loginService.isLoggedIn()">{{user.firstName}}</button>
     <md-menu #menu>
-      <button md-menu-item>Perfil</button>
-      <button md-menu-item (click)="logout()">Logout</button>
+      <a [routerLink]="['','profile']" md-menu-item>Perfil</a>
+      <a [routerLink]="['','home']" md-menu-item (click)="logout()">Logout</a>
     </md-menu>
-
+    <md-divider></md-divider>
   </md-toolbar>
-
   <md-sidenav #sidenav class="menu-sidenav">
     <sidenav-menu></sidenav-menu>
   </md-sidenav>
 
-  <div class="app-content">
-    <router-outlet></router-outlet>
-  </div>
+  <router-outlet></router-outlet>
 </md-sidenav-container>

@@ -14,7 +14,7 @@
           <span>Obrigatórios:</span>
           <p>
             <md-chip-list>
-              <md-chip *ngFor="let skill of internship.requiredSkills">{{skill.name}}</md-chip>
+              <md-chip [selected]="'true'" [color]="chipColor(skill)" *ngFor="let skill of internship.requiredSkills">{{skill.name}}</md-chip>
             </md-chip-list>
           </p>
         </div>
@@ -22,7 +22,7 @@
           <span>Desejáveis:</span>
           <p>
             <md-chip-list>
-              <md-chip *ngFor="let skill of internship.preferredSkills">{{skill.name}}</md-chip>
+              <md-chip [selected]="'true'" [color]="chipColor(skill)" *ngFor="let skill of internship.preferredSkills">{{skill.name}}</md-chip>
             </md-chip-list>
           </p>
         </div>
@@ -34,7 +34,7 @@
           <span md-line>Contato: <a [style.text-decoration]="'none'" [style.color]="'black'" href="mailto:{{internship.contact}}">{{internship.contact}}</a> </span>
         </div>
         <div>
-          <stars [value]="rating.stars" (rating)="starEvent($event)" *ngIf="rating.stars != undefined"></stars>
+          <stars [(value)]="rating.stars" (click)="starEvent()" *ngIf="rating.stars != undefined"></stars>
           <internship-admin-buttons [internship]="internship"></internship-admin-buttons>
         </div>
       </md-list-item>

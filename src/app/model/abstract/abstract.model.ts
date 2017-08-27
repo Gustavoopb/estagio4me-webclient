@@ -8,7 +8,7 @@ export class AbstractModel {
     }
 
     public setValues(data) {
-        if(!data){
+        if (!data) {
             return
         }
         this._id = data["_id"]
@@ -24,7 +24,7 @@ export class AbstractModel {
         return this._createdAt
     }
 
-    public set createdAt(v: Date){
+    public set createdAt(v: Date) {
         this._createdAt = v
     }
 
@@ -34,5 +34,13 @@ export class AbstractModel {
 
     public set updatedAt(v: Date) {
         this._updatedAt = v;
+    }
+
+    valueOf() {
+        return JSON.stringify(this)
+    }
+
+    toString() {
+        return this.valueOf()
     }
 }

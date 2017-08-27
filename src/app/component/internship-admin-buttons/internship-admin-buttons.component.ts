@@ -1,10 +1,12 @@
-import { Input, Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MdDialog, MdDialogRef, MdSnackBar } from "@angular/material";
+
+import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
 import { InternshipModel } from "../../model/internship.model";
 import { InternshipService } from "../../service/internship.service";
 import { LoginService } from "../../service/login.service";
-import { MdDialog, MdDialogRef, MdSnackBar } from "@angular/material";
-import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
 import { Router } from "@angular/router";
+import { WebsocketService } from "../../service/websocket.service";
 
 @Component({
   selector: 'internship-admin-buttons',
@@ -15,7 +17,8 @@ export class InternshipAdminButtonsComponent implements OnInit {
 
   @Input() public internship: InternshipModel
 
-  constructor(public internshipService: InternshipService, public loginService: LoginService, public dialog: MdDialog, public snackBar: MdSnackBar, public router: Router) { }
+  constructor(public internshipService: InternshipService, public loginService: LoginService, public dialog: MdDialog, public snackBar: MdSnackBar, public router: Router,
+    public websocketService: WebsocketService) { }
 
   ngOnInit() {
   }
@@ -27,6 +30,8 @@ export class InternshipAdminButtonsComponent implements OnInit {
       this.snackBar.open(message, "x", {
         duration: 3000,
       })
+      console.log(res.json())
+      this.websocketService.updatedInternship(res.json())
     }, err => {
       console.log(err)
     })

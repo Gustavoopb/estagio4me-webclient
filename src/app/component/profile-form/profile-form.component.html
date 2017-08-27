@@ -1,0 +1,16 @@
+<md-card align="center">
+  <md-card-content align="center">
+
+    <md-card-title-group align="center">
+      <md-card-title>Perfil</md-card-title>
+    </md-card-title-group>
+
+    <autocomplete [style.width]="'70%'" [autocompleteList]="skills" [field]="'name'" [placeholder]="'Experiência em:'" [(value)]="profile.experiencedSkills"></autocomplete>
+
+    <autocomplete [style.width]="'70%'" [autocompleteList]="skills" [field]="'name'" [placeholder]="'Gosto de:'" [(value)]="profile.likedSkills"></autocomplete>
+  </md-card-content>
+  <md-card-actions align="center">
+    <button md-button color="primary" (click)="submit()">Salvar</button>
+    <a [routerLink]="[ '', 'home']" md-button color="warn">Cancelar</a>
+  </md-card-actions>
+</md-card>

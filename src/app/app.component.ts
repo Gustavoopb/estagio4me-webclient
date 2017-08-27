@@ -1,12 +1,13 @@
-import { OnDestroy, Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router'
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+
 import { LoginService } from './service/login.service';
+import { Router } from '@angular/router'
 import { SidenavMenuComponent } from "./component/sidenav-menu/sidenav-menu.component";
 import { Subscription } from "rxjs/Subscription";
 import { UserModel } from "./model/user.model";
 
 @Component({
-  selector: 'app-root',
+  selector: 'root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
               this.loginService.logout()
             }
           }, err => {
-            console.log("Guest User.")
+
           })
         }
       })

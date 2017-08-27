@@ -1,11 +1,9 @@
 <form [formGroup]="internshipForm" (submit)="submitInternship($event)">
-  <md-card align="center">
-    <md-card-content align="center">
-
-      <md-card-title-group align="center">
-        <md-card-title>{{internship.id? "Editar estágio" : "Novo estágio"}}</md-card-title>
-      </md-card-title-group>
-
+  <routed-component>
+    <routed-header>
+      {{internship.id? "Editar estágio" : "Novo estágio"}}
+    </routed-header>
+    <routed-body>
       <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
         <input [style.width]="'80%'" mdInput formControlName="companyName" name="companyName" [(ngModel)]="internship.companyName"
           type="text" required placeholder="Empresa">
@@ -29,50 +27,24 @@
         <textarea mdInput formControlName="description" name="description" [(ngModel)]="internship.description" required placeholder="Descrição"></textarea>
       </md-input-container>
 
-      <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
-        <input mdInput formControlName="requiredSkills" name="requiredSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Obrigatórios"
-          (focus)="changeComplete($event)">
-      </md-input-container>
 
-      <div md-line *ngIf="internship.requiredSkills.length > 0">
-        <span mdTooltip="Click to Remove!" *ngFor="let skill of internship.requiredSkills">
-          <button md-raised-button (click)="removeSkill($event, skill, 'requiredSkills')" color="primary">
-              {{skill.name}}
-          </button>
-        </span>
-      </div>
-      <md-input-container dividerColor="primary" align="start" [style.width]="'70%'">
-        <input mdInput formControlName="preferredSkills" name="preferredSkills" [mdAutocomplete]="autoSkills" type="text" placeholder="Desejáveis"
-          (focus)="changeComplete($event)">
-      </md-input-container>
+      <autocomplete [style.width]="'70%'" [autocompleteList]="skills" [field]="'name'" [placeholder]="'Obrigatório'" [(value)]="internship.requiredSkills"></autocomplete>
+      <autocomplete [style.width]="'70%'" [autocompleteList]="skills" [field]="'name'" [placeholder]="'Desejável'" [(value)]="internship.preferredSkills"></autocomplete>
 
-      <div md-line *ngIf="internship.preferredSkills.length > 0">
-        <span mdTooltip="Click to Remove!" *ngFor="let skill of internship.preferredSkills">
-          <button md-raised-button (click)="removeSkill($event, skill, 'preferredSkills')" color="primary">
-              {{skill.name}}
-          </button>
-        </span>
-      </div>
 
       <div class="compensation row">
         <label>Bolsa estágio</label>
-        <md-slider class="example-margin" [(value)]="internship.compensation" color="primary" [style.width]="'81%'" min="500" max="1800" step="25"
-          thumbLabel="true" [(ngModel)]="internship.compensation" formControlName="compensation">
+        <md-slider class="example-margin" [(value)]="internship.compensation" color="primary" [style.width]="'81%'" min="500" max="1800"
+          step="25" thumbLabel="true" [(ngModel)]="internship.compensation" formControlName="compensation">
         </md-slider>
         <md-checkbox class="intenship-checkbox" mdTooltip="O valor da bolsa é confidencial?" [mdTooltipPosition]="'above'" name="isCompensationPrivate"
           formControlName="isCompensationPrivate" [(ngModel)]="internship.isCompensationPrivate" color="primary"></md-checkbox>
       </div>
       <br/>
-
-      <md-autocomplete id="autoSkills" #autoSkills="mdAutocomplete" [displayWith]="displayParser">
-        <md-option *ngFor="let skill of filteredSkills | async" [value]="skill" (onSelectionChange)="addSkill($event)">
-          {{ skill.name }}
-        </md-option>
-      </md-autocomplete>
-    </md-card-content>
-    <md-card-actions align="center">
+    </routed-body>
+    <routed-footer>
       <button md-button color="primary">Enviar</button>
       <a [routerLink]="['','home']" md-button color="warn">Cancelar</a>
-    </md-card-actions>
-  </md-card>
+    </routed-footer>
+  </routed-component>
 </form>

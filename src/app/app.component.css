@@ -30,12 +30,7 @@ a{
   flex: 1 1 auto;
 }
 
-.app-content{
-    margin: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    width: 95%;
-    height: auto;
-    background-color: transparent;
-    
+img{
+    height: 155px;
+    margin-top: -30px;
 }
